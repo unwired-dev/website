@@ -6,6 +6,7 @@ catalog:
   '@rajzik/oxfmt-config': ^4.0.3
   '@rajzik/oxlint-config': ^4.0.3
   '@tailwindcss/postcss': ^4
+  '@types/node': ^24
   '@types/react': ^19
   '@types/react-dom': ^19
   oxfmt: ^0.53.0
