@@ -80,22 +80,14 @@ jobs:
   fallow:
     name: Fallow
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - uses: pnpm/action-setup@v4
+      - uses: fallow-rs/fallow@v2
         with:
-          version: 11.5.2
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Fallow audit
-        run: pnpm analyze
+          command: audit
+          sarif: true
