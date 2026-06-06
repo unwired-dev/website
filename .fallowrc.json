@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "entry": ["apps/web/app/**/page.mdx", "oxfmt.config.ts"],
+  "ignoreDependencies": [
+    "@mdx-js/react",
+    "@mdx-js/loader",
+    "@rajzik/oxlint-config",
+    "lucide-react",
+    "postcss-load-config"
+  ],
+  "publicPackages": ["@unwired/ui"]
+}
