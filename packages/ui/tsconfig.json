@@ -1,0 +1,10 @@
+{
+  "extends": "@unwired/typescript-config/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@unwired/ui/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "oxlint.config.ts"],
+  "exclude": ["node_modules"]
+}

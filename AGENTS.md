@@ -86,6 +86,15 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
+## Completion Checklist
+
+Before finishing:
+
+1. Confirm only intended files changed.
+2. Run relevant lint, format, typecheck, and test commands for the touched area.
+3. Update docs when commands, config, public behavior, or setup steps change.
+4. Summarize what was verified and what was not run.
+
 ## Commands
 
 - Use `pnpm` for package scripts when available.

@@ -1,15 +1,17 @@
-import type { NextConfig } from 'next';
+import path from 'node:path';
 
 import createMDX from '@next/mdx';
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'export',
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: {
     unoptimized: true,
   },
+  transpilePackages: ['@unwired/ui'],
   turbopack: {
-    root: process.cwd(),
+    root: path.join(import.meta.dirname, '../..'),
   },
 };
 

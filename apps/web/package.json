@@ -1,0 +1,36 @@
+{
+  "name": "@unwired/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "format": "oxfmt --ignore-path ../../.gitignore --check .",
+    "format:fix": "oxfmt --ignore-path ../../.gitignore --write .",
+    "lint": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives app mdx-components.tsx next.config.mjs",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@unwired/ui": "workspace:*",
+    "next": "16.2.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@next/mdx": "^16.2.7",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@unwired/typescript-config": "workspace:*",
+    "oxfmt": "^0.53.0",
+    "oxlint": "^1.68.0",
+    "oxlint-tsgolint": "^0.23.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
