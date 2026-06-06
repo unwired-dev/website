@@ -103,7 +103,3 @@ jobs:
       - uses: fallow-rs/fallow@v2
         with:
           format: sarif
-
-      - uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: fallow-results.sarif
