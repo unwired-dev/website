@@ -1,3 +1,5 @@
+'use client';
+
 import type { VariantProps } from 'tailwind-variants';
 
 import { mergeProps } from '@base-ui/react/merge-props';
