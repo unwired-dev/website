@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "audit": "fallow --json",
+    "audit": "fallow --format json",
     "build": "turbo build",
     "dev": "turbo dev",
     "format": "turbo format",
