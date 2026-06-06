@@ -1,26 +1,48 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from 'react';
 
-type MDXComponents = Record<string, ComponentType<Record<string, unknown>>>;
+type MDXComponentProps = {
+  children?: ReactNode;
+} & Record<string, unknown>;
+
+type MDXComponents = Record<string, ComponentType<MDXComponentProps>>;
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    h1: (props) => (
+    h1: ({ children, ...props }) => (
       <h1
         className="text-4xl font-semibold tracking-[-0.05em] text-[var(--color-ink)] sm:text-5xl"
-        {...props}
-      />
+        {...props}>
+        {children}
+      </h1>
     ),
-    h2: (props) => (
+    h2: ({ children, ...props }) => (
       <h2
         className="mt-12 text-2xl font-semibold tracking-[-0.04em] text-[var(--color-ink)] sm:text-3xl"
-        {...props}
-      />
+        {...props}>
+        {children}
+      </h2>
     ),
-    p: (props) => (
-      <p className="mt-5 text-lg leading-8 text-[var(--color-muted)]" {...props} />
+    p: ({ children, ...props }) => (
+      <p
+        className="mt-5 text-lg leading-8 text-[var(--color-muted)]"
+        {...props}>
+        {children}
+      </p>
     ),
-    ul: (props) => <ul className="mt-5 space-y-3 pl-6" {...props} />,
-    li: (props) => <li className="text-lg leading-8 text-[var(--color-ink)]" {...props} />,
+    ul: ({ children, ...props }) => (
+      <ul
+        className="mt-5 space-y-3 pl-6"
+        {...props}>
+        {children}
+      </ul>
+    ),
+    li: ({ children, ...props }) => (
+      <li
+        className="text-lg leading-8 text-[var(--color-ink)]"
+        {...props}>
+        {children}
+      </li>
+    ),
     ...components,
   };
 }
