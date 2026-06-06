@@ -31,6 +31,9 @@ GitHub Actions runs on every push and pull request:
 - **Lint** — `pnpm lint`
 - **Format** — `pnpm format`
 - **Test** — `pnpm test` (typecheck + build)
+- **Fallow** — `pnpm analyze` from the repo root (changed-code audit for dead code, duplication, and complexity)
+
+Fallow is installed only in the root `package.json`. Config lives in `.fallowrc.json` at the repo root.
 
 Merges to `main` trigger a production deploy to Vercel after CI passes.
 

@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "analyze": "fallow audit",
     "build": "turbo build",
     "dev": "turbo dev",
     "format": "turbo format",
     "format:fix": "turbo format:fix",
     "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
     "start": "pnpm --filter @unwired/web start",
     "test": "turbo typecheck build",
     "typecheck": "turbo typecheck"
@@ -17,15 +19,16 @@
     "@rajzik/oxfmt-config": "^4.0.3",
     "@rajzik/oxlint-config": "^4.0.3",
     "@unwired/typescript-config": "workspace:*",
+    "fallow": "^2.89.0",
     "oxfmt": "^0.53.0",
     "oxlint": "^1.68.0",
     "oxlint-tsgolint": "^0.23.0",
     "turbo": "^2.9.15",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@11.5.2",
   "engines": {
     "node": ">=24",
     "pnpm": "11.5.2"
-  }
+  },
+  "packageManager": "pnpm@11.5.2"
 }

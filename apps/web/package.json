@@ -6,9 +6,10 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "oxfmt --ignore-path ../../.gitignore --check .",
-    "format:fix": "oxfmt --ignore-path ../../.gitignore --write .",
-    "lint": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives app mdx-components.tsx next.config.mjs",
+    "format": "oxfmt --ignore-path ../../.gitignore --check",
+    "format:fix": "oxfmt --ignore-path ../../.gitignore --write",
+    "lint": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives",
+    "lint:fix": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives --fix",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

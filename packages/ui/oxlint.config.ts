@@ -6,7 +6,6 @@ export default buildOxlintConfig({
   overrides: {
     ignorePatterns: ['dist/'],
     rules: {
-      'import/consistent-type-specifier-style': 'allow',
       'react/forbid-component-props': 'allow',
     },
   },
