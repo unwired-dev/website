@@ -10,6 +10,7 @@
     "format:fix": "turbo format:fix",
     "lint": "turbo lint",
     "start": "pnpm --filter @unwired/web start",
+    "test": "turbo typecheck build",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
