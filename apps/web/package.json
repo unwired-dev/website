@@ -17,21 +17,21 @@
     "@mdx-js/react": "^3.1.1",
     "@unwired/ui": "workspace:*",
     "next": "16.2.7",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@next/mdx": "^16.2.7",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "catalog:",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@unwired/typescript-config": "workspace:*",
-    "oxfmt": "^0.53.0",
-    "oxlint": "^1.68.0",
-    "oxlint-tsgolint": "^0.23.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
   }
 }

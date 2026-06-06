@@ -16,15 +16,15 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@rajzik/oxfmt-config": "^4.0.3",
-    "@rajzik/oxlint-config": "^4.0.3",
+    "@rajzik/oxfmt-config": "catalog:",
+    "@rajzik/oxlint-config": "catalog:",
     "@unwired/typescript-config": "workspace:*",
     "fallow": "^2.89.0",
-    "oxfmt": "^0.53.0",
-    "oxlint": "^1.68.0",
-    "oxlint-tsgolint": "^0.23.0",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
     "turbo": "^2.9.15",
-    "typescript": "^5"
+    "typescript": "catalog:"
   },
   "engines": {
     "node": ">=24",

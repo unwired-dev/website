@@ -4,15 +4,54 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@rajzik/oxfmt-config':
+      specifier: ^4.0.3
+      version: 4.0.3
+    '@rajzik/oxlint-config':
+      specifier: ^4.0.3
+      version: 4.0.3
+    '@tailwindcss/postcss':
+      specifier: ^4
+      version: 4.3.0
+    '@types/react':
+      specifier: ^19
+      version: 19.2.16
+    '@types/react-dom':
+      specifier: ^19
+      version: 19.2.3
+    oxfmt:
+      specifier: ^0.53.0
+      version: 0.53.0
+    oxlint:
+      specifier: ^1.68.0
+      version: 1.68.0
+    oxlint-tsgolint:
+      specifier: ^0.23.0
+      version: 0.23.0
+    react:
+      specifier: 19.2.4
+      version: 19.2.4
+    react-dom:
+      specifier: 19.2.4
+      version: 19.2.4
+    tailwindcss:
+      specifier: ^4
+      version: 4.3.0
+    typescript:
+      specifier: ^5
+      version: 5.9.3
+
 importers:
 
   .:
     devDependencies:
       '@rajzik/oxfmt-config':
-        specifier: ^4.0.3
+        specifier: 'catalog:'
         version: 4.0.3
       '@rajzik/oxlint-config':
-        specifier: ^4.0.3
+        specifier: 'catalog:'
         version: 4.0.3(eslint@9.39.4(jiti@2.7.0))(oxlint-tsgolint@0.23.0)(oxlint@1.68.0(oxlint-tsgolint@0.23.0))(turbo@2.9.16)
       '@unwired/typescript-config':
         specifier: workspace:*
@@ -21,19 +60,19 @@ importers:
         specifier: ^2.89.0
         version: 2.89.0
       oxfmt:
-        specifier: ^0.53.0
+        specifier: 'catalog:'
         version: 0.53.0
       oxlint:
-        specifier: ^1.68.0
+        specifier: 'catalog:'
         version: 1.68.0(oxlint-tsgolint@0.23.0)
       oxlint-tsgolint:
-        specifier: ^0.23.0
+        specifier: 'catalog:'
         version: 0.23.0
       turbo:
         specifier: ^2.9.15
         version: 2.9.16
       typescript:
-        specifier: ^5
+        specifier: 'catalog:'
         version: 5.9.3
 
   apps/web:
@@ -48,10 +87,10 @@ importers:
         specifier: 16.2.7
         version: 16.2.7(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
-        specifier: 19.2.4
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
-        specifier: 19.2.4
+        specifier: 'catalog:'
         version: 19.2.4(react@19.2.4)
     devDependencies:
       '@mdx-js/loader':
@@ -61,34 +100,34 @@ importers:
         specifier: ^16.2.7
         version: 16.2.7(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.16)(react@19.2.4))
       '@tailwindcss/postcss':
-        specifier: ^4
+        specifier: 'catalog:'
         version: 4.3.0
       '@types/node':
         specifier: ^20
         version: 20.19.41
       '@types/react':
-        specifier: ^19
+        specifier: 'catalog:'
         version: 19.2.16
       '@types/react-dom':
-        specifier: ^19
+        specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.16)
       '@unwired/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       oxfmt:
-        specifier: ^0.53.0
+        specifier: 'catalog:'
         version: 0.53.0
       oxlint:
-        specifier: ^1.68.0
+        specifier: 'catalog:'
         version: 1.68.0(oxlint-tsgolint@0.23.0)
       oxlint-tsgolint:
-        specifier: ^0.23.0
+        specifier: 'catalog:'
         version: 0.23.0
       tailwindcss:
-        specifier: ^4
+        specifier: 'catalog:'
         version: 4.3.0
       typescript:
-        specifier: ^5
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/typescript-config: {}
@@ -118,31 +157,31 @@ importers:
         version: 1.4.0
     devDependencies:
       '@tailwindcss/postcss':
-        specifier: ^4
+        specifier: 'catalog:'
         version: 4.3.0
       '@types/react':
-        specifier: ^19
+        specifier: 'catalog:'
         version: 19.2.16
       '@unwired/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       oxfmt:
-        specifier: ^0.53.0
+        specifier: 'catalog:'
         version: 0.53.0
       oxlint:
-        specifier: ^1.68.0
+        specifier: 'catalog:'
         version: 1.68.0(oxlint-tsgolint@0.23.0)
       oxlint-tsgolint:
-        specifier: ^0.23.0
+        specifier: 'catalog:'
         version: 0.23.0
       react:
-        specifier: 19.2.4
+        specifier: 'catalog:'
         version: 19.2.4
       tailwindcss:
-        specifier: ^4
+        specifier: 'catalog:'
         version: 4.3.0
       typescript:
-        specifier: ^5
+        specifier: 'catalog:'
         version: 5.9.3
 
 packages:
