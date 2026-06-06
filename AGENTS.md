@@ -91,7 +91,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 Before finishing:
 
 1. Confirm only intended files changed.
-2. Run relevant lint, format, typecheck, and test commands for the touched area.
+2. Run relevant lint, format, typecheck, test, and audit commands for the touched area.
 3. Update docs when commands, config, public behavior, or setup steps change.
 4. Summarize what was verified and what was not run.
 
@@ -103,6 +103,7 @@ Before finishing:
   - `pnpm build`
   - `pnpm start`
   - `pnpm lint`
+  - `pnpm run audit` — Fallow static analysis from the monorepo root (`.fallowrc.json`)
 - If local Node or pnpm is unavailable, do not install tooling silently. State what could not be run.
 
 ## Relevant Skills
@@ -200,6 +201,7 @@ Before finishing:
 ## Verification
 
 - Run `pnpm lint` after code changes when tooling is available.
+- Run `pnpm run audit` from the monorepo root when changing dependencies, workspace packages, entry points, or code that may affect reachability or duplication.
 - Run `pnpm build` for changes to routes, layouts, MDX, metadata, Next config, or static export behavior when tooling is available.
 - For visual changes, inspect the rendered page in a browser at desktop and mobile widths.
 - If verification cannot be run because tooling is missing, report that explicitly in the final response.
