@@ -1,7 +1,10 @@
-import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { expect, test } from '@playwright/test';
 
-import { POST } from '@/app/api/waitlist/route';
+import { createWaitlistPostHandler } from '@/app/api/waitlist/route';
+
+interface ResendEmailRequest {
+  readonly to: readonly string[];
+}
 
 const validSubmission = {
   email: 'person@example.com',
@@ -12,60 +15,35 @@ const validSubmission = {
   createdAt: '2026-06-08T13:09:45.000Z',
 };
 
-test('POST accepts valid waitlist submissions', async () => {
-  const previousFetch = globalThis.fetch;
-  const previousEnv = setWaitlistEnv();
-  const emailRequests: unknown[] = [];
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
 
-  globalThis.fetch = async (_input, init) => {
-    emailRequests.push(JSON.parse(String(init?.body)));
+function isResendEmailRequest(value: unknown): value is ResendEmailRequest {
+  return (
+    isRecord(value) &&
+    Array.isArray(value.to) &&
+    value.to.every((recipient) => typeof recipient === 'string')
+  );
+}
 
-    return new Response('{}', { status: 200 });
-  };
+function readEmailRequest(init: RequestInit | undefined): ResendEmailRequest {
+  const body = init?.body;
 
-  try {
-    const response = await POST(jsonRequest(validSubmission));
+  expect(typeof body).toBe('string');
 
-    assert.equal(response.status, 202);
-    assert.equal(emailRequests.length, 2);
-    assert.deepEqual((emailRequests[0] as { readonly to: readonly string[] }).to, [
-      'person@example.com',
-    ]);
-    assert.deepEqual((emailRequests[1] as { readonly to: readonly string[] }).to, [
-      'jan@example.com',
-    ]);
-  } finally {
-    restoreWaitlistEnv(previousEnv);
-    globalThis.fetch = previousFetch;
+  if (typeof body !== 'string') {
+    throw new TypeError('Expected Resend request body to be a string.');
   }
-});
 
-test('POST rejects invalid submissions before sending email', async () => {
-  const previousFetch = globalThis.fetch;
-  const previousEnv = setWaitlistEnv();
-  let emailRequestCount = 0;
+  const parsedBody: unknown = JSON.parse(body);
 
-  globalThis.fetch = async () => {
-    emailRequestCount += 1;
-
-    return new Response('{}', { status: 200 });
-  };
-
-  try {
-    const response = await POST(
-      jsonRequest({
-        ...validSubmission,
-        productUpdateConsent: false,
-      }),
-    );
-
-    assert.equal(response.status, 400);
-    assert.equal(emailRequestCount, 0);
-  } finally {
-    restoreWaitlistEnv(previousEnv);
-    globalThis.fetch = previousFetch;
+  if (!isResendEmailRequest(parsedBody)) {
+    throw new TypeError('Expected Resend request body to include recipients.');
   }
-});
+
+  return parsedBody;
+}
 
 function jsonRequest(body: unknown): Request {
   return new Request('https://unwired.dev/api/waitlist', {
@@ -77,27 +55,50 @@ function jsonRequest(body: unknown): Request {
   });
 }
 
-function setWaitlistEnv(): Record<string, string | undefined> {
-  const previousEnv = {
-    RESEND_API_KEY: process.env.RESEND_API_KEY,
-    WAITLIST_FROM_EMAIL: process.env.WAITLIST_FROM_EMAIL,
-    WAITLIST_NOTIFY_EMAIL: process.env.WAITLIST_NOTIFY_EMAIL,
-  };
-
-  process.env.RESEND_API_KEY = 'test-key';
-  process.env.WAITLIST_FROM_EMAIL = 'Unwired <waitlist@example.com>';
-  process.env.WAITLIST_NOTIFY_EMAIL = 'jan@example.com';
-
-  return previousEnv;
+function createTestPostHandler(
+  fetchImplementation: typeof fetch,
+): (request: Request) => Promise<Response> {
+  return createWaitlistPostHandler({
+    env: {
+      RESEND_API_KEY: 'test-key',
+      WAITLIST_FROM_EMAIL: 'Unwired <waitlist@example.com>',
+      WAITLIST_NOTIFY_EMAIL: 'jan@example.com',
+    },
+    fetchImplementation,
+  });
 }
 
-function restoreWaitlistEnv(previousEnv: Record<string, string | undefined>): void {
-  for (const [name, value] of Object.entries(previousEnv)) {
-    if (value === undefined) {
-      delete process.env[name];
-      continue;
-    }
+test('POST accepts valid waitlist submissions', async () => {
+  const emailRequests: ResendEmailRequest[] = [];
+  const post = createTestPostHandler(async (_input, init) => {
+    emailRequests.push(readEmailRequest(init));
 
-    process.env[name] = value;
-  }
-}
+    return new Response('{}', { status: 200 });
+  });
+
+  const response = await post(jsonRequest(validSubmission));
+
+  expect(response.status).toBe(202);
+  expect(emailRequests).toHaveLength(2);
+  expect(emailRequests[0]?.to).toEqual(['person@example.com']);
+  expect(emailRequests[1]?.to).toEqual(['jan@example.com']);
+});
+
+test('POST rejects invalid submissions before sending email', async () => {
+  let emailRequestCount = 0;
+  const post = createTestPostHandler(async () => {
+    emailRequestCount += 1;
+
+    return new Response('{}', { status: 200 });
+  });
+
+  const response = await post(
+    jsonRequest({
+      ...validSubmission,
+      productUpdateConsent: false,
+    }),
+  );
+
+  expect(response.status).toBe(400);
+  expect(emailRequestCount).toBe(0);
+});

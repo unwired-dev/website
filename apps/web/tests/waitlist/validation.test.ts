@@ -1,5 +1,4 @@
-import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { expect, test } from '@playwright/test';
 
 import { validateWaitlistSubmission } from '@/features/waitlist/validation';
 
@@ -15,13 +14,17 @@ const validSubmission = {
 test('accepts a complete waitlist submission', () => {
   const result = validateWaitlistSubmission(validSubmission);
 
-  assert.equal(result.ok, true);
-
-  if (result.ok) {
-    assert.equal(result.submission.email, 'person@example.com');
-    assert.deepEqual(result.submission.productInterests, ['unwired-mail', 'unwired-calendar']);
-    assert.deepEqual(result.submission.platformInterests, ['macos', 'ios', 'ipados']);
-  }
+  expect(result).toEqual({
+    ok: true,
+    submission: {
+      email: 'person@example.com',
+      productInterests: ['unwired-mail', 'unwired-calendar'],
+      platformInterests: ['macos', 'ios', 'ipados'],
+      productUpdateConsent: true,
+      sourcePage: '/products/waitlist',
+      createdAt: '2026-06-08T13:09:45.000Z',
+    },
+  });
 });
 
 test('rejects submissions without explicit consent', () => {
@@ -30,11 +33,10 @@ test('rejects submissions without explicit consent', () => {
     productUpdateConsent: false,
   });
 
-  assert.equal(result.ok, false);
-
-  if (!result.ok) {
-    assert.match(result.errors.join('\n'), /Consent/);
-  }
+  expect(result).toEqual({
+    ok: false,
+    errors: ['Consent for occasional Unwired product updates is required.'],
+  });
 });
 
 test('rejects unsupported products and platforms', () => {
@@ -44,9 +46,11 @@ test('rejects unsupported products and platforms', () => {
     platformInterests: ['macos', 'android'],
   });
 
-  assert.equal(result.ok, false);
-
-  if (!result.ok) {
-    assert.equal(result.errors.length, 2);
-  }
+  expect(result).toEqual({
+    ok: false,
+    errors: [
+      'Product interest must include Unwired Mail, Unwired Calendar, or both.',
+      'Platform interest must include macOS, iOS, or iPadOS.',
+    ],
+  });
 });

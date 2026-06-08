@@ -12,6 +12,7 @@
     "lint:fix": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives --fix",
     "start": "next start",
     "test:e2e": "playwright test",
+    "test:waitlist": "playwright test --config playwright.waitlist.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
