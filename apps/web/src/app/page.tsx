@@ -10,6 +10,8 @@ import {
 import { cn } from '@unwired/ui/lib/utils';
 import Link from 'next/link';
 
+import { BookingModal } from '@/components/booking-modal';
+
 const offers = [
   'Senior React implementation for critical product work',
   'Frontend architecture for scaling product teams',
@@ -52,14 +54,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
-            <a
-              className={cn(
-                buttonVariants({ size: 'lg' }),
-                'rounded-full px-6',
-              )}
-              href="mailto:hello@unwired.dev">
-              Start a conversation
-            </a>
+            <BookingModal />
             <a
               className={cn(
                 buttonVariants({ size: 'lg', variant: 'outline' }),

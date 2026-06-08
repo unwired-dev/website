@@ -22,6 +22,9 @@
     "lint:fix": {
       "dependsOn": ["^lint:fix"]
     },
+    "test:e2e": {
+      "cache": false
+    },
     "typecheck": {
       "dependsOn": ["^typecheck"]
     }
