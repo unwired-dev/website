@@ -48,6 +48,21 @@ Production deploys are handled automatically by Vercel when changes are pushed t
 
 Pull requests get preview deployments when the Vercel Git integration is enabled.
 
+## Waitlist API
+
+Product waitlist submissions are handled outside the static website by `apps/waitlist-api`.
+
+Required environment variables:
+
+- `RESEND_API_KEY` — Resend API key used to send the confirmation email
+- `WAITLIST_FROM_EMAIL` — verified sender for waitlist confirmations
+- `WAITLIST_NOTIFY_EMAIL` — internal recipient for collected waitlist submissions
+
+Optional environment variables:
+
+- `PORT` — local HTTP port, default `3001`
+- `WAITLIST_ALLOWED_ORIGIN` — CORS origin for the static website, default `*`
+
 ## Current routes
 
 - `/` homepage
