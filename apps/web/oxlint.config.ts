@@ -6,6 +6,7 @@ export default buildOxlintConfig({
   overrides: {
     ignorePatterns: ['.next/', 'out/', 'next-env.d.ts'],
     rules: {
+      'node/no-process-env': 'allow',
       'react/forbid-component-props': 'allow',
       'typescript/prefer-readonly-parameter-types': 'allow',
     },

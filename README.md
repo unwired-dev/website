@@ -1,6 +1,6 @@
 # Unwired Website
 
-Static company website for Unwired, deployed on Vercel.
+Company website for Unwired, deployed on Vercel.
 
 ## Stack
 
@@ -22,7 +22,7 @@ pnpm dev
 pnpm build
 ```
 
-The site is configured for static export, so production builds emit fully static output suitable for Vercel deployment.
+Production builds are handled by Next.js and include the website plus backend route handlers used by the app.
 
 ## CI
 
@@ -48,9 +48,20 @@ Production deploys are handled automatically by Vercel when changes are pushed t
 
 Pull requests get preview deployments when the Vercel Git integration is enabled.
 
+## Waitlist API
+
+Product waitlist submissions are handled by the Next.js route handler at `apps/web/src/app/api/waitlist/route.ts`.
+
+Required environment variables:
+
+- `RESEND_API_KEY` — Resend API key used to send the confirmation email
+- `WAITLIST_FROM_EMAIL` — verified sender for waitlist confirmations
+- `WAITLIST_NOTIFY_EMAIL` — internal recipient for collected waitlist submissions
+
 ## Current routes
 
 - `/` homepage
+- `/api/waitlist` Product Waitlist API
 - `/unwired-mail` product proof page
 
 ## Content direction
