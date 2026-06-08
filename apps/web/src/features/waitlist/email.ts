@@ -11,6 +11,16 @@ interface SendNotificationOptions extends SendConfirmationOptions {
   readonly notifyEmail: string;
 }
 
+interface ResendEmailOptions {
+  readonly apiKey: string;
+  readonly fromEmail: string;
+  readonly toEmail: string;
+  readonly subject: string;
+  readonly text: string;
+  readonly errorMessage: string;
+  readonly fetchImplementation: typeof fetch;
+}
+
 const productLabels: Record<
   WaitlistSubmission['productInterests'][number],
   string
@@ -39,13 +49,49 @@ function formatList(values: readonly string[]): string {
   return `${initialValues.join(', ')} and ${finalValue}`;
 }
 
-function renderConfirmationText(submission: WaitlistSubmission): string {
-  const products = formatList(
+function formatProductInterests(submission: WaitlistSubmission): string {
+  return formatList(
     submission.productInterests.map((value) => productLabels[value]),
   );
-  const platforms = formatList(
+}
+
+function formatPlatformInterests(submission: WaitlistSubmission): string {
+  return formatList(
     submission.platformInterests.map((value) => platformLabels[value]),
   );
+}
+
+async function sendResendEmail({
+  apiKey,
+  fromEmail,
+  toEmail,
+  subject,
+  text,
+  errorMessage,
+  fetchImplementation,
+}: ResendEmailOptions): Promise<void> {
+  const response = await fetchImplementation('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: fromEmail,
+      to: [toEmail],
+      subject,
+      text,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`${errorMessage} ${response.status}.`);
+  }
+}
+
+function renderConfirmationText(submission: WaitlistSubmission): string {
+  const products = formatProductInterests(submission);
+  const platforms = formatPlatformInterests(submission);
 
   return [
     'Thanks for joining the Unwired product waitlist.',
@@ -61,12 +107,8 @@ function renderConfirmationText(submission: WaitlistSubmission): string {
 }
 
 function renderNotificationText(submission: WaitlistSubmission): string {
-  const products = formatList(
-    submission.productInterests.map((value) => productLabels[value]),
-  );
-  const platforms = formatList(
-    submission.platformInterests.map((value) => platformLabels[value]),
-  );
+  const products = formatProductInterests(submission);
+  const platforms = formatPlatformInterests(submission);
 
   return [
     'New Unwired product waitlist submission.',
@@ -86,25 +128,15 @@ export async function sendWaitlistConfirmation({
   submission,
   fetchImplementation = fetch,
 }: SendConfirmationOptions): Promise<void> {
-  const response = await fetchImplementation('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [submission.email],
-      subject: "You're on the Unwired product waitlist",
-      text: renderConfirmationText(submission),
-    }),
+  await sendResendEmail({
+    apiKey,
+    fromEmail,
+    toEmail: submission.email,
+    subject: "You're on the Unwired product waitlist",
+    text: renderConfirmationText(submission),
+    errorMessage: 'Resend rejected the confirmation email with',
+    fetchImplementation,
   });
-
-  if (!response.ok) {
-    throw new Error(
-      `Resend rejected the confirmation email with ${response.status}.`,
-    );
-  }
 }
 
 export async function sendWaitlistNotification({
@@ -114,23 +146,13 @@ export async function sendWaitlistNotification({
   submission,
   fetchImplementation = fetch,
 }: SendNotificationOptions): Promise<void> {
-  const response = await fetchImplementation('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [notifyEmail],
-      subject: 'New Unwired product waitlist submission',
-      text: renderNotificationText(submission),
-    }),
+  await sendResendEmail({
+    apiKey,
+    fromEmail,
+    toEmail: notifyEmail,
+    subject: 'New Unwired product waitlist submission',
+    text: renderNotificationText(submission),
+    errorMessage: 'Resend rejected the waitlist notification with',
+    fetchImplementation,
   });
-
-  if (!response.ok) {
-    throw new Error(
-      `Resend rejected the waitlist notification with ${response.status}.`,
-    );
-  }
 }
