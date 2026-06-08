@@ -13,6 +13,7 @@
     "lint:fix": "turbo lint:fix",
     "start": "pnpm --filter @unwired/web start",
     "test": "turbo typecheck build",
+    "test:e2e": "turbo test:e2e",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@
     "lint": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives",
     "lint:fix": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives --fix",
     "start": "next start",
+    "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@next/mdx": "^16.2.7",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
