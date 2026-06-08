@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: './tests',
   fullyParallel: true,
   forbidOnly: true,
   retries: 0,
@@ -12,11 +12,17 @@ export default defineConfig({
   },
   projects: [
     {
+      name: 'waitlist',
+      testMatch: /waitlist\/.*\.test\.ts/u,
+    },
+    {
       name: 'chromium',
+      testMatch: /e2e\/.*\.test\.ts/u,
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'mobile-chrome',
+      testMatch: /e2e\/.*\.test\.ts/u,
       use: { ...devices['Pixel 7'] },
     },
   ],
