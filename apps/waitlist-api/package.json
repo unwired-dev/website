@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "pnpm build && node dist/server.js",
+    "dev": "pnpm build && node dist/src/server.js",
     "format": "oxfmt --ignore-path ../../.gitignore --check .",
     "format:fix": "oxfmt --ignore-path ../../.gitignore --write .",
     "lint": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives",
     "lint:fix": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives --fix",
-    "start": "node dist/server.js",
-    "test": "pnpm build && node --test dist/**/*.test.js",
+    "start": "node dist/src/server.js",
+    "test": "pnpm build && node --test dist/tests/**/*.test.js",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { createWaitlistApiServer } from './server.js';
+import { createWaitlistApiServer } from '../src/server.js';
 
 const validSubmission = {
   email: 'person@example.com',
