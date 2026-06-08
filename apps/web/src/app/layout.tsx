@@ -5,6 +5,8 @@ import { cn } from '@unwired/ui/lib/utils';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 
+import { AppTRPCProvider } from '@/components/trpc-provider';
+
 import '@unwired/ui/globals.css';
 
 const geistSans = Geist({
@@ -63,7 +65,7 @@ export default function RootLayout({
               </a>
             </nav>
           </header>
-          {children}
+          <AppTRPCProvider>{children}</AppTRPCProvider>
           <footer className="text-muted-foreground mx-auto mt-20 flex w-full max-w-6xl flex-col gap-3 border-t px-6 py-8 text-sm sm:px-10 lg:px-12">
             <p>
               Unwired is a founder-led React consultancy under the Unwired

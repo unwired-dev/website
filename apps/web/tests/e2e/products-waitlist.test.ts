@@ -1,17 +1,60 @@
 import { expect, test } from '@playwright/test';
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function findPayloadWithEmail(value: unknown): Record<string, unknown> | null {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const payload = findPayloadWithEmail(item);
+
+      if (payload) {
+        return payload;
+      }
+    }
+
+    return null;
+  }
+
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  if (value.email === 'person@example.com') {
+    return value;
+  }
+
+  for (const item of Object.values(value)) {
+    const payload = findPayloadWithEmail(item);
+
+    if (payload) {
+      return payload;
+    }
+  }
+
+  return null;
+}
+
 test('product waitlist submits selected interests', async ({ page }) => {
   let submittedBody: unknown = null;
 
-  await page.route('**/api/waitlist', async (route) => {
+  await page.route('**/api/trpc/**', async (route) => {
+    expect(route.request().url()).toContain('waitlist.join');
     submittedBody = route.request().postDataJSON();
 
     await route.fulfill({
       contentType: 'application/json',
-      body: JSON.stringify({
-        message: 'You are on the Unwired product waitlist.',
-      }),
-      status: 202,
+      body: JSON.stringify([
+        {
+          result: {
+            data: {
+              message: 'You are on the Unwired product waitlist.',
+            },
+          },
+        },
+      ]),
+      status: 200,
     });
   });
 
@@ -33,7 +76,10 @@ test('product waitlist submits selected interests', async ({ page }) => {
   await expect(
     page.getByText('You are on the Unwired product waitlist.'),
   ).toBeVisible();
-  expect(submittedBody).toMatchObject({
+
+  const submittedPayload = findPayloadWithEmail(submittedBody);
+
+  expect(submittedPayload).toMatchObject({
     email: 'person@example.com',
     productInterests: ['unwired-mail', 'unwired-calendar'],
     platformInterests: ['macos', 'ios'],
@@ -45,12 +91,24 @@ test('product waitlist submits selected interests', async ({ page }) => {
 test('product waitlist shows errors without losing values', async ({
   page,
 }) => {
-  await page.route('**/api/waitlist', async (route) => {
+  await page.route('**/api/trpc/**', async (route) => {
+    expect(route.request().url()).toContain('waitlist.join');
+
     await route.fulfill({
       contentType: 'application/json',
-      body: JSON.stringify({
-        error: 'Unable to process waitlist submission.',
-      }),
+      body: JSON.stringify([
+        {
+          error: {
+            message: 'Unable to process waitlist submission.',
+            code: -32_603,
+            data: {
+              code: 'BAD_GATEWAY',
+              httpStatus: 502,
+              path: 'waitlist.join',
+            },
+          },
+        },
+      ]),
       status: 502,
     });
   });

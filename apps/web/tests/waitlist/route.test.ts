@@ -1,12 +1,15 @@
 import { expect, test } from '@playwright/test';
 
-import { createWaitlistPostHandler } from '@/app/api/waitlist/route';
+import type { WaitlistSubmission } from '@/features/waitlist/validation';
+
+import { appRouter } from '@/server/routers/root';
+import { createCallerFactory } from '@/server/trpc';
 
 interface ResendEmailRequest {
   readonly to: readonly string[];
 }
 
-const validSubmission = {
+const validSubmission: WaitlistSubmission = {
   email: 'person@example.com',
   productInterests: ['unwired-mail'],
   platformInterests: ['macos', 'ios'],
@@ -45,20 +48,10 @@ function readEmailRequest(init: RequestInit | undefined): ResendEmailRequest {
   return parsedBody;
 }
 
-function jsonRequest(body: unknown): Request {
-  return new Request('https://unwired.dev/api/waitlist', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-}
+const createCaller = createCallerFactory(appRouter);
 
-function createTestPostHandler(
-  fetchImplementation: typeof fetch,
-): (request: Request) => Promise<Response> {
-  return createWaitlistPostHandler({
+function createTestCaller(fetchImplementation: typeof fetch) {
+  return createCaller({
     env: {
       RESEND_API_KEY: 'test-key',
       WAITLIST_FROM_EMAIL: 'Unwired <waitlist@example.com>',
@@ -68,37 +61,43 @@ function createTestPostHandler(
   });
 }
 
-test('POST accepts valid waitlist submissions', async () => {
+test('waitlist.join accepts valid waitlist submissions', async () => {
   const emailRequests: ResendEmailRequest[] = [];
-  const post = createTestPostHandler(async (_input, init) => {
+  const caller = createTestCaller(async (_input, init) => {
     emailRequests.push(readEmailRequest(init));
 
     return new Response('{}', { status: 200 });
   });
 
-  const response = await post(jsonRequest(validSubmission));
+  const response = await caller.waitlist.join(validSubmission);
 
-  expect(response.status).toBe(202);
+  expect(response).toEqual({
+    message: 'You are on the Unwired product waitlist.',
+  });
   expect(emailRequests).toHaveLength(2);
   expect(emailRequests[0]?.to).toEqual(['person@example.com']);
   expect(emailRequests[1]?.to).toEqual(['jan@example.com']);
 });
 
-test('POST rejects invalid submissions before sending email', async () => {
+test('waitlist.join rejects invalid submissions before sending email', async () => {
   let emailRequestCount = 0;
-  const post = createTestPostHandler(async () => {
+  const caller = createTestCaller(async () => {
     emailRequestCount += 1;
 
     return new Response('{}', { status: 200 });
   });
+  const invalidSubmission = JSON.parse(`{
+    "email": "person@example.com",
+    "productInterests": ["unwired-mail"],
+    "platformInterests": ["macos", "ios"],
+    "productUpdateConsent": false,
+    "sourcePage": "/products/waitlist",
+    "createdAt": "2026-06-08T13:09:45.000Z"
+  }`);
 
-  const response = await post(
-    jsonRequest({
-      ...validSubmission,
-      productUpdateConsent: false,
-    }),
+  await expect(caller.waitlist.join(invalidSubmission)).rejects.toThrow(
+    'Consent for occasional Unwired product updates',
   );
 
-  expect(response.status).toBe(400);
   expect(emailRequestCount).toBe(0);
 });
