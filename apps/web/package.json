@@ -12,11 +12,15 @@
     "lint:fix": "oxlint --type-aware --type-check --deny-warnings --report-unused-disable-directives --fix",
     "start": "next start",
     "test:e2e": "playwright test",
-    "test:waitlist": "playwright test --config playwright.waitlist.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
+    "@tanstack/react-form": "^1.33.0",
+    "@tanstack/react-query": "^5.101.0",
+    "@trpc/client": "^11.17.0",
+    "@trpc/server": "^11.17.0",
+    "@trpc/tanstack-react-query": "^11.17.0",
     "@unwired/ui": "workspace:*",
     "next": "16.2.7",
     "react": "catalog:",
