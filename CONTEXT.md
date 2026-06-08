@@ -61,8 +61,8 @@ A shared page-based interest list for coming soon Unwired products, allowing pro
 _Avoid_: Separate app waitlists, product signup, app account
 
 **Waitlist API**:
-A separate service that handles Product Waitlist submissions while the Company Website remains statically exported.
-_Avoid_: Website route handler, embedded database in the website
+The backend route in the Company Website app that handles Product Waitlist submissions and sends Resend email notifications.
+_Avoid_: Separate service, embedded database in the website
 
 **Product Platform Interest**:
 The product waitlist captures interest in macOS, iOS, and iPadOS versions of Unwired products.
@@ -116,14 +116,14 @@ _Avoid_: Selected Work / Experience, unsupported case studies, client-logo wall,
 An app-focused page that should exist only when a product has enough substance to justify a dedicated page beyond the homepage section.
 _Avoid_: Thin product page, side-project page, demo page
 
-**Growth-Ready Static Site**:
-The website should launch as a small static marketing site, while using a stack that can expand into articles and case studies later without requiring a rewrite.
+**Growth-Ready Website**:
+The website should launch as a small marketing site with a minimal backend for owned conversion flows, while using a stack that can expand into articles and case studies later without requiring a rewrite.
 _Avoid_: Throwaway brochure site, CMS-first platform
 
 **Repo-Owned Content**:
 The website's content should live in the repository as Markdown or MDX and be edited directly in code for the first version.
 _Avoid_: CMS-managed content, database-backed editorial workflow
 
-**React-Based Static Framework**:
-The website should be built with a React-based framework so the implementation itself reflects the frontend expertise Unwired is selling, while still deploying as a static site.
+**React-Based Framework**:
+The website should be built with a React-based framework so the implementation itself reflects the frontend expertise Unwired is selling, while allowing small app-owned backend routes where useful.
 _Avoid_: Plain HTML brochure stack, non-React primary framework

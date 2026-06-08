@@ -1,9 +1,0 @@
-{
-  "extends": "@unwired/typescript-config/base.json",
-  "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
-  },
-  "include": ["src", "tests"],
-  "exclude": ["node_modules", "dist", "oxlint.config.ts"]
-}

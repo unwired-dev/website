@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { validateWaitlistSubmission } from '../src/validation.js';
+import { validateWaitlistSubmission } from '@/features/waitlist/validation';
 
 const validSubmission = {
   email: 'Person@Example.com',

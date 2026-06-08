@@ -1,4 +1,4 @@
-import type { WaitlistSubmission } from './validation.js';
+import type { WaitlistSubmission } from './validation';
 
 type SendConfirmationOptions = {
   readonly apiKey: string;
