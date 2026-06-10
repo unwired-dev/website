@@ -44,9 +44,7 @@ const experiencePoints = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <Badge
-      className="tracking-[0.3em] uppercase"
-      variant="secondary">
+    <Badge className="tracking-[0.3em] uppercase" variant="secondary">
       {children}
     </Badge>
   );
@@ -105,9 +103,7 @@ export default function Home() {
         </Card>
       </section>
 
-      <section
-        className="flex flex-col gap-8"
-        id="products">
+      <section className="flex flex-col gap-8" id="products">
         <div className="flex max-w-3xl flex-col gap-5">
           <SectionLabel>Products</SectionLabel>
           <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
@@ -122,9 +118,7 @@ export default function Home() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {products.map((product) => (
-            <Card
-              className="shadow-lg"
-              key={product.name}>
+            <Card className="shadow-lg" key={product.name}>
               <CardHeader>
                 <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-2xl text-lg font-semibold">
                   {product.mark}
@@ -168,9 +162,9 @@ export default function Home() {
             Senior frontend consultancy for product teams.
           </h2>
           <p className="text-slate-300 text-lg leading-8">
-            Frontend Consultancy is Unwired&apos;s primary service for teams that
-            need senior implementation, clearer React interface direction, and
-            frontend leadership without adding a permanent lead first.
+            Frontend Consultancy is Unwired&apos;s primary service for teams
+            that need senior implementation, clearer React interface direction,
+            and frontend leadership without adding a permanent lead first.
           </p>
           <div>
             <BookingModal />
@@ -198,7 +192,8 @@ export default function Home() {
           </h2>
           <p className="text-muted-foreground text-lg leading-8">
             Jan Šilhan&apos;s public work history is the reference point for
-            Unwired&apos;s frontend leadership, implementation, and product taste.
+            Unwired&apos;s frontend leadership, implementation, and product
+            taste.
           </p>
           <a
             className={cn(
