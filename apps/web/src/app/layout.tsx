@@ -5,6 +5,7 @@ import { cn } from '@unwired/ui/lib/utils';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 
+import { BookingModal } from '@/components/booking-modal';
 import { AppTRPCProvider } from '@/components/trpc-provider';
 
 import '@unwired/ui/globals.css';
@@ -22,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Unwired',
   description:
-    'Founder-led React consultancy for product teams that need senior hands-on frontend leadership.',
+    'Unwired builds on-device AI products and helps teams ship better frontends.',
 };
 
 export default function RootLayout({
@@ -50,31 +51,46 @@ export default function RootLayout({
             <nav className="text-muted-foreground flex items-center gap-2 text-sm font-medium">
               <Link
                 className={cn(buttonVariants({ variant: 'ghost' }))}
-                href="/">
-                Home
+                href="/#products">
+                Products
               </Link>
               <Link
                 className={cn(buttonVariants({ variant: 'ghost' }))}
-                href="/unwired-mail">
-                Unwired Mail
+                href="/#services">
+                Services
               </Link>
-              <a
+              <Link
                 className={cn(buttonVariants({ variant: 'ghost' }))}
-                href="mailto:hello@unwired.dev">
-                Contact
-              </a>
+                href="/#about">
+                About
+              </Link>
             </nav>
           </header>
           <AppTRPCProvider>{children}</AppTRPCProvider>
-          <footer className="text-muted-foreground mx-auto mt-20 flex w-full max-w-6xl flex-col gap-3 border-t px-6 py-8 text-sm sm:px-10 lg:px-12">
-            <p>
-              Unwired is a founder-led React consultancy under the Unwired
-              brand.
-            </p>
-            <p>
-              Privacy-focused product work, frontend architecture, and senior
-              implementation.
-            </p>
+          <footer className="text-muted-foreground mx-auto mt-20 grid w-full max-w-6xl gap-8 border-t px-6 py-8 text-sm sm:px-10 lg:grid-cols-[1fr_auto] lg:px-12">
+            <div className="flex flex-col gap-4">
+              <p>
+                Unwired builds on-device AI products and helps teams ship better
+                frontends.
+              </p>
+              <nav className="flex flex-wrap gap-x-4 gap-y-2">
+                <Link href="/#products">Products</Link>
+                <Link href="/#services">Services</Link>
+                <Link href="/#about">About</Link>
+                <Link href="/products/waitlist">Product waitlist</Link>
+                <a
+                  href="https://www.linkedin.com/in/jan-%C5%A1ilhan/"
+                  rel="noreferrer"
+                  target="_blank">
+                  LinkedIn
+                </a>
+                <a href="mailto:silhan@unwired.dev">Email</a>
+              </nav>
+            </div>
+            <div className="flex flex-col gap-3 lg:items-end">
+              <p>Need senior frontend help?</p>
+              <BookingModal />
+            </div>
           </footer>
         </div>
       </body>
