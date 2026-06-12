@@ -91,7 +91,7 @@ export default function RootLayout({
               <a
                 className={cn(buttonVariants({ variant: 'outline' }))}
                 href="mailto:silhan@unwired.dev">
-                Email silhan@unwired.dev
+                Email about Frontend Consultancy
               </a>
             </div>
           </footer>
