@@ -17,6 +17,7 @@ interface Product {
   outcome: string;
   description: string;
   mark: string;
+  detailsHref?: string;
 }
 
 const products: Product[] = [
@@ -26,6 +27,7 @@ const products: Product[] = [
     description:
       'A coming soon email app for macOS, iOS, and iPadOS focused on personal communication.',
     mark: 'M',
+    detailsHref: '/unwired-mail',
   },
   {
     name: 'Unwired Calendar',
@@ -152,14 +154,23 @@ export default function Home() {
                 <p className="text-muted-foreground text-base leading-7">
                   {product.description}
                 </p>
-                <Link
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'w-fit rounded-full',
-                  )}
-                  href="/products/waitlist">
-                  Join the product waitlist
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    className={cn(buttonVariants(), 'w-fit rounded-full')}
+                    href="/products/waitlist">
+                    Join the product waitlist
+                  </Link>
+                  {product.detailsHref ? (
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: 'link' }),
+                        'w-fit rounded-full px-0',
+                      )}
+                      href={product.detailsHref}>
+                      Read the product proof
+                    </Link>
+                  ) : null}
+                </div>
               </CardContent>
             </Card>
           ))}
