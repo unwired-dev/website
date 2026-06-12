@@ -42,7 +42,9 @@ export default function RootLayout({
         <div className="relative isolate flex min-h-full flex-col overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#e0f2fe_0,rgba(224,242,254,0.65)_18%,rgba(248,250,252,0)_46%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)]" />
           <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-8 sm:px-10 lg:px-12">
-            <Link className="text-lg font-semibold tracking-[-0.04em]" href="/">
+            <Link
+              className="text-lg font-semibold tracking-[-0.04em]"
+              href="/">
               Unwired
             </Link>
             <nav className="text-muted-foreground flex items-center gap-2 text-sm font-medium">
