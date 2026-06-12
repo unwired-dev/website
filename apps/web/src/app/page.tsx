@@ -12,13 +12,22 @@ import Link from 'next/link';
 
 import { BookingModal } from '@/components/booking-modal';
 
-const products = [
+interface Product {
+  name: string;
+  outcome: string;
+  description: string;
+  mark: string;
+  detailsHref?: string;
+}
+
+const products: Product[] = [
   {
     name: 'Unwired Mail',
     outcome: 'Privacy-first email with on-device AI.',
     description:
       'A coming soon email app for macOS, iOS, and iPadOS focused on personal communication.',
     mark: 'M',
+    detailsHref: '/unwired-mail',
   },
   {
     name: 'Unwired Calendar',
@@ -145,14 +154,26 @@ export default function Home() {
                 <p className="text-muted-foreground text-base leading-7">
                   {product.description}
                 </p>
-                <Link
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'w-fit rounded-full',
-                  )}
-                  href="/products/waitlist">
-                  Join the product waitlist
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  {product.detailsHref ? (
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: 'outline' }),
+                        'w-fit rounded-full',
+                      )}
+                      href={product.detailsHref}>
+                      Learn more
+                    </Link>
+                  ) : null}
+                  <Link
+                    className={cn(
+                      buttonVariants({ variant: 'outline' }),
+                      'w-fit rounded-full',
+                    )}
+                    href="/products/waitlist">
+                    Join the product waitlist
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           ))}

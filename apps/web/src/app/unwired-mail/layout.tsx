@@ -1,4 +1,12 @@
+import type { Metadata } from 'next';
+
 import { Card, CardContent } from '@unwired/ui/components/card';
+
+export const metadata: Metadata = {
+  title: 'Unwired Mail | Unwired',
+  description:
+    'Unwired Mail is a coming soon email app with privacy-first defaults and on-device AI for personal communication.',
+};
 
 export default function UnwiredMailLayout({
   children,
