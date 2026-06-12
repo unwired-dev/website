@@ -160,11 +160,14 @@ export default function Home() {
       </section>
 
       <section
+        aria-labelledby="services-title"
         className="grid gap-8 rounded-3xl bg-slate-950 p-8 text-white shadow-xl sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:p-12"
         id="services">
         <div className="flex flex-col gap-5">
           <Badge className="w-fit tracking-[0.3em] uppercase">Services</Badge>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+          <h2
+            className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl"
+            id="services-title">
             Senior frontend consultancy for product teams.
           </h2>
           <p className="text-lg leading-8 text-slate-300">

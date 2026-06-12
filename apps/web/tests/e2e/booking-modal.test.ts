@@ -29,9 +29,12 @@ test('booking CTA opens a centered lazy modal with fallback contact', async ({
 
   await expect(page.locator('iframe')).toHaveCount(0);
 
-  const bookingButton = page
-    .getByRole('button', { name: 'Book a frontend consultation' })
-    .first();
+  const servicesSection = page.getByRole('region', {
+    name: 'Senior frontend consultancy for product teams.',
+  });
+  const bookingButton = servicesSection.getByRole('button', {
+    name: 'Book a frontend consultation',
+  });
 
   await bookingButton.click();
 
