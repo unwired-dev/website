@@ -155,24 +155,21 @@ export default function Home() {
                   {product.description}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {product.detailsHref ? (
-                    <Link
-                      className={cn(
-                        buttonVariants({ variant: 'outline' }),
-                        'w-fit rounded-full',
-                      )}
-                      href={product.detailsHref}>
-                      Learn more
-                    </Link>
-                  ) : null}
                   <Link
-                    className={cn(
-                      buttonVariants({ variant: 'outline' }),
-                      'w-fit rounded-full',
-                    )}
+                    className={cn(buttonVariants(), 'w-fit rounded-full')}
                     href="/products/waitlist">
                     Join the product waitlist
                   </Link>
+                  {product.detailsHref ? (
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: 'link' }),
+                        'w-fit rounded-full px-0',
+                      )}
+                      href={product.detailsHref}>
+                      Read the product proof
+                    </Link>
+                  ) : null}
                 </div>
               </CardContent>
             </Card>
