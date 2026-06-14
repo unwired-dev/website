@@ -33,6 +33,7 @@ type ProductInterest = (typeof productOptions)[number]['value'];
 type PlatformInterest = (typeof platformOptions)[number]['value'];
 type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
 type FormSubmitHandler = NonNullable<ComponentProps<'form'>['onSubmit']>;
+type CheckboxBlurHandler = NonNullable<ComponentProps<'input'>['onBlur']>;
 interface WaitlistFormValues {
   readonly email: string;
   readonly productInterests: readonly ProductInterest[];
@@ -77,6 +78,39 @@ function WaitlistStatusMessage({
       )}>
       {message}
     </p>
+  );
+}
+
+function MultiSelectCheckbox<T extends string>({
+  label,
+  name,
+  onBlur,
+  onChange,
+  selectedValues,
+  value,
+}: {
+  readonly label: string;
+  readonly name: string;
+  readonly onBlur: CheckboxBlurHandler;
+  readonly onChange: (values: readonly T[]) => void;
+  readonly selectedValues: readonly T[];
+  readonly value: T;
+}) {
+  return (
+    <input
+      aria-label={label}
+      checked={selectedValues.includes(value)}
+      className="size-4 accent-current"
+      name={name}
+      onBlur={onBlur}
+      onChange={(event) => {
+        onChange(
+          toggleArrayValue(selectedValues, value, event.currentTarget.checked),
+        );
+      }}
+      type="checkbox"
+      value={value}
+    />
   );
 }
 
@@ -171,22 +205,12 @@ export function ProductWaitlistForm() {
                 <label
                   className="border-border bg-background/80 has-checked:border-foreground flex min-h-28 cursor-pointer flex-col gap-2 rounded-lg border p-4 transition"
                   key={option.value}>
-                  <input
-                    aria-label={option.label}
-                    checked={field.state.value.includes(option.value)}
-                    className="size-4 accent-current"
+                  <MultiSelectCheckbox
+                    label={option.label}
                     name={field.name}
                     onBlur={field.handleBlur}
-                    onChange={(event) => {
-                      field.handleChange(
-                        toggleArrayValue(
-                          field.state.value,
-                          option.value,
-                          event.currentTarget.checked,
-                        ),
-                      );
-                    }}
-                    type="checkbox"
+                    onChange={field.handleChange}
+                    selectedValues={field.state.value}
                     value={option.value}
                   />
                   <span className="font-medium">{option.label}</span>
@@ -211,22 +235,12 @@ export function ProductWaitlistForm() {
                 <label
                   className="border-border bg-background/80 has-checked:border-foreground flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm transition"
                   key={option.value}>
-                  <input
-                    aria-label={option.label}
-                    checked={field.state.value.includes(option.value)}
-                    className="size-4 accent-current"
+                  <MultiSelectCheckbox
+                    label={option.label}
                     name={field.name}
                     onBlur={field.handleBlur}
-                    onChange={(event) => {
-                      field.handleChange(
-                        toggleArrayValue(
-                          field.state.value,
-                          option.value,
-                          event.currentTarget.checked,
-                        ),
-                      );
-                    }}
-                    type="checkbox"
+                    onChange={field.handleChange}
+                    selectedValues={field.state.value}
                     value={option.value}
                   />
                   {option.label}
