@@ -63,6 +63,7 @@ Required environment variables:
 - `/` homepage
 - `/api/waitlist` Product Waitlist API
 - `/unwired-mail` product proof page
+- `/unwired-calendar` product proof page
 
 ## Content direction
 

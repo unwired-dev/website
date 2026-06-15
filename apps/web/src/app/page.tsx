@@ -35,6 +35,7 @@ const products: Product[] = [
     description:
       'A coming soon calendar app for macOS, iOS, and iPadOS focused on personal time.',
     mark: 'C',
+    detailsHref: '/unwired-calendar',
   },
 ];
 
