@@ -50,7 +50,7 @@ Pull requests get preview deployments when the Vercel Git integration is enabled
 
 ## Waitlist API
 
-Product waitlist submissions are handled by the Next.js route handler at `apps/web/src/app/api/waitlist/route.ts`.
+Product waitlist submissions are handled through the app-owned tRPC backend at `apps/web/src/app/api/trpc/[trpc]/route.ts`.
 
 Required environment variables:
 
@@ -61,10 +61,10 @@ Required environment variables:
 ## Current routes
 
 - `/` homepage
-- `/api/waitlist` Product Waitlist API
+- `/api/trpc` tRPC backend API
 - `/unwired-mail` product proof page
 - `/unwired-calendar` product proof page
 
 ## Content direction
 
-The site is consultancy-first, with Unwired Mail serving as product proof. Domain language and positioning decisions are tracked in [CONTEXT.md](./CONTEXT.md).
+The site is consultancy-first, with Unwired products supporting the positioning. Domain language and positioning decisions are tracked in [CONTEXT.md](./CONTEXT.md).

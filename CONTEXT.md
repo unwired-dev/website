@@ -61,8 +61,8 @@ A shared page-based interest list for coming soon Unwired products, allowing pro
 _Avoid_: Separate app waitlists, product signup, app account
 
 **Waitlist API**:
-The backend route in the Company Website app that handles Product Waitlist submissions and sends Resend email notifications.
-_Avoid_: Separate service, embedded database in the website
+The tRPC backend surface in the Company Website app that handles Product Waitlist submissions and sends Resend email notifications.
+_Avoid_: Static-only form, separate service, embedded database in the website
 
 **Product Platform Interest**:
 The product waitlist captures interest in macOS, iOS, and iPadOS versions of Unwired products.
@@ -117,13 +117,13 @@ An app-focused page that should exist only when a product has enough substance t
 _Avoid_: Thin product page, side-project page, demo page
 
 **Growth-Ready Website**:
-The website should launch as a small marketing site with a minimal backend for owned conversion flows, while using a stack that can expand into articles and case studies later without requiring a rewrite.
-_Avoid_: Throwaway brochure site, CMS-first platform
+The website should launch as a small marketing site backed by a tRPC API for owned conversion flows, while using a stack that can expand into articles, case studies, and product-backed interactions later without requiring a rewrite.
+_Avoid_: Static-only brochure site, throwaway brochure site, CMS-first platform
 
 **Repo-Owned Content**:
 The website's content should live in the repository as Markdown or MDX and be edited directly in code for the first version.
 _Avoid_: CMS-managed content, database-backed editorial workflow
 
 **React-Based Framework**:
-The website should be built with a React-based framework so the implementation itself reflects the frontend expertise Unwired is selling, while allowing small app-owned backend routes where useful.
-_Avoid_: Plain HTML brochure stack, non-React primary framework
+The website should be built with a React-based framework so the implementation itself reflects the frontend expertise Unwired is selling, while using app-owned tRPC backend routes where useful.
+_Avoid_: Plain HTML brochure stack, static-site-only architecture, non-React primary framework
