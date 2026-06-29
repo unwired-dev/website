@@ -65,6 +65,11 @@ Required environment variables:
 - `/products/waitlist` shared Product Waitlist
 - `/unwired-mail` product proof page
 - `/unwired-calendar` product proof page
+- `/writing` repo-owned writing index, intentionally omitted from navigation
+- `/writing/[slug]` statically generated MDX writing entries
+
+Writing content and publishing instructions live in
+[`apps/web/src/content/writing`](./apps/web/src/content/writing/README.md).
 
 ## Content direction
 
