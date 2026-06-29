@@ -1,54 +1,72 @@
 import type { Metadata } from 'next';
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@unwired/ui/components/card';
-
 import { ProductWaitlistForm } from '@/components/waitlist/product-waitlist-form';
 
 export const metadata: Metadata = {
-  title: 'Product waitlist | Unwired',
+  title: 'Product waitlist',
   description:
     'Join the shared Unwired product waitlist for coming soon on-device AI products.',
 };
 
-const productNotes = [
-  'One shared list for coming soon Unwired products.',
-  'Choose interest in Unwired Mail, Unwired Calendar, or both.',
-  'Select macOS, iOS, and iPadOS platform interest.',
+const notes = [
+  {
+    index: '01',
+    title: 'One shared list',
+    description: 'Follow Mail, Calendar, or both without separate signups.',
+  },
+  {
+    index: '02',
+    title: 'Your platforms',
+    description: 'Choose macOS, iOS, and iPadOS interest.',
+  },
+  {
+    index: '03',
+    title: 'Occasional updates',
+    description:
+      'Hear about meaningful product progress, not a noisy campaign.',
+  },
 ];
 
 export default function ProductWaitlistPage() {
   return (
-    <main className="mx-auto grid w-full max-w-6xl flex-1 gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:px-12">
-      <section className="flex flex-col gap-6">
-        <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-          Join the Unwired product waitlist.
-        </h1>
-        <p className="text-muted-foreground max-w-2xl text-lg leading-8">
-          This is one shared waitlist for coming soon Unwired products centered
-          on on-device AI for personal communication and time.
-        </p>
-        <ul className="border-border text-muted-foreground flex flex-col gap-3 border-t pt-6 text-base leading-7">
-          {productNotes.map((note) => (
-            <li key={note}>{note}</li>
-          ))}
-        </ul>
-      </section>
+    <main
+      className="site-main waitlist-page"
+      id="main-content">
+      <section className="waitlist-layout page-grid reveal">
+        <div className="waitlist-intro">
+          <p className="eyebrow">
+            <span>03</span>
+            Product waitlist
+          </p>
+          <h1>Stay close to what Unwired is building.</h1>
+          <p className="waitlist-intro__lead">
+            One shared waitlist for coming soon on-device AI products for
+            personal communication and time.
+          </p>
+          <ol className="waitlist-notes">
+            {notes.map((note) => (
+              <li key={note.index}>
+                <span>{note.index}</span>
+                <div>
+                  <h2>{note.title}</h2>
+                  <p>{note.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
 
-      <Card className="shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-xl tracking-[-0.03em]">
-            Product interest
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+        <section
+          aria-labelledby="waitlist-form-title"
+          className="waitlist-form-shell reveal reveal--delay">
+          <div className="waitlist-form-shell__header">
+            <span>Interest note</span>
+            <span>Unwired / 2026</span>
+          </div>
+          <h2 id="waitlist-form-title">Tell us what you care about.</h2>
           <ProductWaitlistForm />
-        </CardContent>
-      </Card>
+        </section>
+      </section>
     </main>
   );
 }
