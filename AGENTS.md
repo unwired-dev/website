@@ -12,7 +12,7 @@ Instructions for coding agents working in this repository.
 
 - This is the Unwired company website.
 - Keep language aligned with `CONTEXT.md`; it is the source of truth for business terminology.
-- The site is a consultancy-first static marketing site with a subordinate Unwired Mail product proof page.
+- The site is a consultancy-first marketing site with app-owned backend routes for conversion flows and subordinate product proof pages.
 - Content is repo-owned and should stay in code, Markdown, or MDX unless the project direction changes.
 
 ## Stack
@@ -22,8 +22,8 @@ Instructions for coding agents working in this repository.
 - TypeScript with `strict` enabled.
 - Tailwind CSS 4 via `@import "tailwindcss"`.
 - MDX through `@next/mdx`.
-- Static export through `output: "export"`.
-- Images are currently configured as `unoptimized: true` for static export.
+- Vercel deployment with an app-owned tRPC backend.
+- Images are currently configured as `unoptimized: true`.
 
 ## Think Before Coding
 
@@ -108,7 +108,7 @@ Before finishing:
 
 ## Relevant Skills
 
-- Use `next-best-practices` when changing App Router routes, layouts, metadata, route handlers, server/client boundaries, static export behavior, image/font usage, or Next configuration.
+- Use `next-best-practices` when changing App Router routes, layouts, metadata, route handlers, server/client boundaries, runtime behavior, image/font usage, or Next configuration.
 - Use `vercel-react-best-practices` when writing or reviewing React components, data fetching, rendering performance, bundle size, or hydration behavior.
 - Use frontend design skills only when the task asks for visual UI changes or implementation of a new page/section.
 
@@ -120,17 +120,18 @@ Before finishing:
 - Use `generateMetadata` or exported `metadata` for page metadata. Keep page titles and descriptions aligned with the glossary in `CONTEXT.md`.
 - Use `notFound()`, `redirect()`, and `permanentRedirect()` instead of ad hoc error or redirect UI.
 - If catching errors around Next control-flow helpers, rethrow framework control-flow errors rather than swallowing them.
-- Use route handlers only for real HTTP API surfaces. Prefer Server Components for reads and Server Actions for mutations when the UI owns the interaction.
+- Use route handlers only for real HTTP API surfaces, including the existing tRPC backend. Prefer Server Components for reads and keep Product Waitlist mutations on the established tRPC procedure.
 - Do not create a `route.ts` and `page.tsx` for the same route segment at the same level.
 - Default runtime is Node.js. Use Edge runtime only for a clear latency or platform constraint.
-- Keep static export constraints in mind. Avoid features that require a live server unless the deployment model is intentionally changed.
+- Keep the Vercel runtime boundary in mind. Put owned backend behavior behind explicit app routes and keep content pages statically renderable when they do not need request-time data.
 
-## Static Export Constraints
+## Runtime And Deployment Constraints
 
-- This project uses `output: "export"`, so routes should be statically renderable.
-- Do not introduce runtime-only features such as dynamic server rendering, request-time cookies/headers dependencies, rewrites that require a server, or image optimization that depends on the Next image server.
+- The site deploys to Vercel and includes an app-owned tRPC backend for Product Waitlist submissions.
+- Keep marketing and content routes statically renderable unless request-time behavior is required.
+- Keep Product Waitlist mutations in the existing tRPC backend; do not reintroduce the superseded external-service or static-only architecture.
 - For images, respect the current `images.unoptimized: true` setting. Prefer local assets in `public/` unless there is a clear reason to use remote images.
-- If a requested feature requires server runtime behavior, call out the deployment trade-off before implementing it.
+- If a requested feature changes the runtime or deployment model, call out the trade-off before implementing it.
 
 ## React Performance Rules
 
@@ -141,7 +142,7 @@ Before finishing:
 - Use `React.cache()` for per-request deduplication when server work is repeated within a render.
 - Avoid module-level mutable request state in Server Components or SSR code.
 - Hoist static data, static JSX, fonts, and other request-independent values to module scope.
-- Use `after()` for non-blocking post-response work when the app has a server runtime. Remember static export may make that inappropriate here.
+- Use `after()` for non-blocking post-response work when it is appropriate for the Vercel runtime.
 
 ## Bundle Rules
 
@@ -176,7 +177,7 @@ Before finishing:
 ## Images And Fonts
 
 - Use `next/font` for fonts. Keep font definitions in module scope and apply variables through layout-level classes.
-- Use `next/image` for optimized image behavior when compatible with the current static export setup.
+- Use `next/image` for image behavior compatible with the current `images.unoptimized: true` setup.
 - For LCP images, set appropriate priority/preload behavior and accurate `sizes`.
 - Provide dimensions or stable aspect ratios for images and media to avoid layout shift.
 - Use blur placeholders only when the image source and UX justify them.
@@ -202,6 +203,6 @@ Before finishing:
 
 - Run `pnpm lint` after code changes when tooling is available.
 - Run `pnpm run audit` from the monorepo root when changing dependencies, workspace packages, entry points, or code that may affect reachability or duplication.
-- Run `pnpm build` for changes to routes, layouts, MDX, metadata, Next config, or static export behavior when tooling is available.
+- Run `pnpm build` for changes to routes, layouts, MDX, metadata, Next config, or runtime behavior when tooling is available.
 - For visual changes, inspect the rendered page in a browser at desktop and mobile widths.
 - If verification cannot be run because tooling is missing, report that explicitly in the final response.
