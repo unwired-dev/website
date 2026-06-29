@@ -62,6 +62,7 @@ Required environment variables:
 
 - `/` homepage
 - `/api/trpc` tRPC backend API
+- `/products/waitlist` shared Product Waitlist
 - `/unwired-mail` product proof page
 - `/unwired-calendar` product proof page
 

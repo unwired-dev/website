@@ -45,7 +45,7 @@ A prospective client engagement for React or frontend consulting services initia
 _Avoid_: User signup, app install
 
 **Primary Call To Action**:
-The main Services conversion action is to book a frontend consultation for Frontend Consultancy through https://cal.com/jan-silhan-unwired/frontend-consultation.
+The main Services conversion action is to book a frontend consultation for Frontend Consultancy through https://cal.eu/jan-silhan-unwired/frontend-consultation.
 _Avoid_: Book a generic consultation, sign up, install app, get started
 
 **Consultancy Contact Email**:
