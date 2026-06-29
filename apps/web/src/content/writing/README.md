@@ -11,13 +11,11 @@ To publish an entry:
 3. Add the slug and a static import to `writingLoaders` in `index.ts`.
 
 ```mdx
-import type { WritingMetadata } from './index';
-
 export const metadata = {
   title: 'A specific, useful title',
   summary: 'A concise description used by the writing index and page metadata.',
   publishedAt: '2026-06-29',
-} satisfies WritingMetadata;
+};
 
 Start the article here. The route supplies the title and publication date.
 ```
