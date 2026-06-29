@@ -2,6 +2,16 @@ import { buttonVariants } from '@unwired/ui/components/button';
 import { cn } from '@unwired/ui/lib/utils';
 import Link from 'next/link';
 
+import {
+  ctaButton,
+  displayTitle,
+  eyebrow,
+  leadCopy,
+  pageGrid,
+  reveal,
+  revealDelay,
+  sectionHeading,
+} from '@/components/marketing-styles';
 import { ArrowUpRight, ProductVisual } from '@/components/product-visual';
 
 const bookingUrl = 'https://cal.com/jan-silhan-unwired/frontend-consultation';
@@ -42,24 +52,33 @@ const experience = [
 export default function Home() {
   return (
     <main
-      className="site-main home-page"
+      className="flex-1"
       id="main-content">
-      <section className="home-hero page-grid reveal">
-        <div className="home-hero__copy">
-          <p className="eyebrow">
+      <section
+        className={cn(
+          pageGrid,
+          reveal,
+          'min-h-[min(52rem,calc(100svh-5rem))] items-end gap-y-16 pt-[clamp(4rem,9vw,8rem)] pb-16',
+        )}>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-1 md:col-end-9">
+          <p className={eyebrow}>
             <span>00</span>
             Products &amp; frontend consultancy
           </p>
-          <h1 className="display-title">
+          <h1
+            className={cn(
+              displayTitle,
+              '[&_em]:block [&_em]:font-[480] [&_em]:text-muted-foreground [&_em]:not-italic',
+            )}>
             Better products. <em>Better frontends.</em>
           </h1>
-          <p className="home-hero__lead">
+          <p className="text-muted-foreground max-w-[42rem] text-[clamp(1.15rem,2vw,1.45rem)] leading-[1.6]">
             Unwired builds on-device AI products and helps ambitious teams ship
             clearer, stronger React interfaces.
           </p>
-          <div className="home-hero__actions">
+          <div className="flex flex-wrap gap-3">
             <Link
-              className={cn(buttonVariants({ size: 'lg' }), 'cta-button')}
+              className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
               href="#products">
               Explore products
               <ArrowUpRight />
@@ -67,7 +86,7 @@ export default function Home() {
             <a
               className={cn(
                 buttonVariants({ size: 'lg', variant: 'outline' }),
-                'cta-button',
+                ctaButton,
               )}
               href={bookingUrl}
               rel="noreferrer"
@@ -80,9 +99,11 @@ export default function Home() {
 
         <aside
           aria-label="Unwired disciplines"
-          className="home-hero__register">
-          <p className="home-hero__register-label">Practice register</p>
-          <ol>
+          className="border-border col-span-full flex flex-col gap-6 border-t pt-6 md:col-start-10 md:col-end-13">
+          <p className="text-[0.7rem] font-[650] tracking-[0.14em] text-[var(--signal)] uppercase">
+            Practice register
+          </p>
+          <ol className="[&_li_span]:text-muted-foreground grid list-none gap-3 [&_li]:grid [&_li]:min-h-0 [&_li]:grid-cols-[auto_1fr] [&_li]:items-center [&_li]:gap-4 [&_li]:border-b [&_li]:border-[color-mix(in_oklch,var(--border),transparent_35%)] [&_li]:pb-3 [&_li]:text-[0.92rem] [&_li_span]:text-[0.65rem] [&_li_span]:tabular-nums">
             <li>
               <span>01</span>
               On-device AI products
@@ -100,41 +121,57 @@ export default function Home() {
               Design systems
             </li>
           </ol>
-          <p className="home-hero__register-note">
+          <p className="text-muted-foreground max-w-96 text-[0.86rem] leading-[1.6]">
             Independent, founder-led, and close to the work.
           </p>
         </aside>
       </section>
 
       <section
-        className="home-products page-grid"
+        className={cn(
+          pageGrid,
+          'gap-y-24 border-t border-border py-[clamp(5rem,11vw,10rem)]',
+        )}
         id="products">
-        <div className="home-section-intro reveal">
-          <p className="eyebrow">
+        <div
+          className={cn(
+            reveal,
+            'col-span-full flex flex-col gap-6 md:col-start-1 md:col-end-9',
+          )}>
+          <p className={eyebrow}>
             <span>01</span>
             Products
           </p>
-          <h2>Personal context should stay personal.</h2>
-          <p>
+          <h2 className={sectionHeading}>
+            Personal context should stay personal.
+          </h2>
+          <p className={leadCopy}>
             Unwired Mail and Unwired Calendar are separate products shaped by
             one idea: useful AI can work close to your communication and time.
           </p>
         </div>
 
         <Link
-          className="product-feature product-feature--mail reveal"
+          className={cn(
+            reveal,
+            'group col-span-full grid gap-6 md:col-start-1 md:col-end-7 md:[&_.product-visual]:min-h-[30rem]',
+          )}
           href="/unwired-mail">
           <ProductVisual kind="mail" />
-          <div className="product-feature__copy">
-            <div>
-              <p className="eyebrow">
+          <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
+            <div className="flex flex-col gap-4">
+              <p className={eyebrow}>
                 <span>01</span>
                 Coming soon
               </p>
-              <h3>Unwired Mail</h3>
+              <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
+                Unwired Mail
+              </h3>
             </div>
-            <p>Privacy-first email with on-device AI.</p>
-            <span className="product-feature__link">
+            <p className="text-muted-foreground leading-[1.65]">
+              Privacy-first email with on-device AI.
+            </p>
+            <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
               Read the product story
               <ArrowUpRight />
             </span>
@@ -142,19 +179,27 @@ export default function Home() {
         </Link>
 
         <Link
-          className="product-feature product-feature--calendar reveal reveal--delay"
+          className={cn(
+            reveal,
+            revealDelay,
+            'group col-span-full grid gap-6 md:col-start-7 md:col-end-13 md:mt-32 md:[&_.product-visual]:min-h-[30rem]',
+          )}
           href="/unwired-calendar">
           <ProductVisual kind="calendar" />
-          <div className="product-feature__copy">
-            <div>
-              <p className="eyebrow">
+          <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
+            <div className="flex flex-col gap-4">
+              <p className={eyebrow}>
                 <span>02</span>
                 Coming soon
               </p>
-              <h3>Unwired Calendar</h3>
+              <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
+                Unwired Calendar
+              </h3>
             </div>
-            <p>Remember what matters with on-device AI.</p>
-            <span className="product-feature__link">
+            <p className="text-muted-foreground leading-[1.65]">
+              Remember what matters with on-device AI.
+            </p>
+            <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
               Read the product story
               <ArrowUpRight />
             </span>
@@ -164,24 +209,30 @@ export default function Home() {
 
       <section
         aria-labelledby="services-title"
-        className="home-services"
+        className="border-border border-y bg-[var(--surface-1)] py-[clamp(5rem,11vw,10rem)]"
         id="services">
-        <div className="page-grid">
-          <div className="home-services__intro reveal">
-            <p className="eyebrow">
+        <div className={cn(pageGrid, 'gap-y-16')}>
+          <div
+            className={cn(
+              reveal,
+              'col-span-full flex flex-col items-start gap-6 md:sticky md:top-8 md:col-start-1 md:col-end-6 md:self-start',
+            )}>
+            <p className={eyebrow}>
               <span>02</span>
               Frontend Consultancy
             </p>
-            <h2 id="services-title">
+            <h2
+              className={sectionHeading}
+              id="services-title">
               Senior frontend help, without the hand‑off chain.
             </h2>
-            <p>
+            <p className={leadCopy}>
               The same product judgment behind Unwired Mail and Unwired Calendar
               is available directly to teams that need implementation and
               frontend leadership.
             </p>
             <a
-              className={cn(buttonVariants({ size: 'lg' }), 'cta-button')}
+              className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
               href={bookingUrl}
               rel="noreferrer"
               target="_blank">
@@ -190,7 +241,12 @@ export default function Home() {
             </a>
           </div>
 
-          <ol className="service-list reveal reveal--delay">
+          <ol
+            className={cn(
+              reveal,
+              revealDelay,
+              'col-span-full list-none md:col-start-7 md:col-end-13 [&_li]:grid [&_li]:grid-cols-[auto_1fr] [&_li]:gap-4 [&_li]:border-t [&_li]:border-border [&_li]:py-6 [&_li>span]:text-[0.7rem] [&_li>span]:text-[var(--signal)] [&_li>span]:tabular-nums [&_h3]:font-heading [&_h3]:text-[1.45rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.035em] [&_p]:col-start-2 [&_p]:leading-[1.65] [&_p]:text-muted-foreground',
+            )}>
             {services.map((service) => (
               <li key={service.index}>
                 <span>{service.index}</span>
@@ -202,21 +258,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-experience page-grid reveal">
-        <div className="home-experience__intro">
-          <p className="eyebrow">
+      <section
+        className={cn(
+          pageGrid,
+          reveal,
+          'gap-y-16 py-[clamp(5rem,11vw,10rem)]',
+        )}>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-1 md:col-end-7">
+          <p className={eyebrow}>
             <span>03</span>
             Selected experience
           </p>
-          <h2>Judgment backed by shipped frontend work.</h2>
+          <h2 className={sectionHeading}>
+            Judgment backed by shipped frontend work.
+          </h2>
         </div>
-        <div className="home-experience__body">
-          <p>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-8 md:col-end-13">
+          <p className={leadCopy}>
             Jan Šilhan&apos;s public work history is the reference point for
             Unwired&apos;s frontend leadership, implementation, and product
             taste.
           </p>
-          <ol>
+          <ol className="[&_li]:border-border w-full list-none [&_li]:grid [&_li]:grid-cols-[2rem_1fr] [&_li]:gap-4 [&_li]:border-t [&_li]:py-4 [&_li]:leading-[1.6] [&_li>span]:text-xs [&_li>span]:text-[var(--signal)] [&_li>span]:tabular-nums">
             {experience.map((item, index) => (
               <li key={item}>
                 <span>0{index + 1}</span>
@@ -227,7 +290,7 @@ export default function Home() {
           <a
             className={cn(
               buttonVariants({ size: 'lg', variant: 'outline' }),
-              'cta-button',
+              ctaButton,
             )}
             href="https://www.linkedin.com/in/jan-%C5%A1ilhan/"
             rel="noreferrer"
@@ -239,21 +302,31 @@ export default function Home() {
       </section>
 
       <section
-        className="home-about page-grid reveal"
+        className={cn(
+          pageGrid,
+          reveal,
+          'gap-y-16 border-t border-border py-[clamp(5rem,11vw,10rem)]',
+        )}
         id="about">
-        <p className="eyebrow">
+        <p
+          className={cn(
+            eyebrow,
+            'col-span-full self-start md:col-start-1 md:col-end-4',
+          )}>
           <span>04</span>
           About
         </p>
-        <div className="home-about__body">
-          <h2>Built by Jan Šilhan, close to the product and the code.</h2>
-          <div className="home-about__columns">
-            <p>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-5 md:col-end-13">
+          <h2 className={sectionHeading}>
+            Built by Jan Šilhan, close to the product and the code.
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <p className={leadCopy}>
               Jan builds on-device AI products for personal communication and
               time while helping product teams ship high-quality React
               interfaces.
             </p>
-            <p>
+            <p className={leadCopy}>
               The product work sharpens the consultancy judgment. The
               consultancy keeps the product standards grounded in real frontend
               delivery.
