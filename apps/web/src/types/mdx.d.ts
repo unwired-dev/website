@@ -1,11 +1,9 @@
 declare module '*.mdx' {
   import type { ComponentType } from 'react';
 
-  export const metadata: {
-    title: string;
-    summary: string;
-    publishedAt: string;
-  };
+  import type { WritingMetadata } from '@/content/writing';
+
+  export const metadata: WritingMetadata;
 
   const MDXContent: ComponentType;
 

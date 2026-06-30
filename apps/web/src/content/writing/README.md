@@ -26,5 +26,8 @@ const writingLoaders: Record<string, WritingLoader> = {
 };
 ```
 
+The `src/types/mdx.d.ts` declaration types each MDX module's default component
+and metadata export against `WritingMetadata`.
+
 Keep the slug URL-safe and stable. Only publish case studies when the claims and
 company references are approved; category-level experience remains the default.
