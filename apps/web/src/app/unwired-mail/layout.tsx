@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import { Card, CardContent } from '@unwired/ui/components/card';
+import { ProductPageShell } from '@/components/product-page-shell';
 
 export const metadata: Metadata = {
-  title: 'Unwired Mail | Unwired',
+  title: 'Unwired Mail',
   description:
     'Unwired Mail is a coming soon email app with privacy-first defaults and on-device AI for personal communication.',
 };
@@ -14,12 +14,12 @@ export default function UnwiredMailLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-16 sm:px-10">
-      <Card className="shadow-lg">
-        <CardContent className="pt-(--card-spacing) sm:px-12 sm:py-12">
-          {children}
-        </CardContent>
-      </Card>
-    </main>
+    <ProductPageShell
+      description="A privacy-first email app shaped around personal communication and on-device AI."
+      index="01"
+      kind="mail"
+      title="Unwired Mail">
+      {children}
+    </ProductPageShell>
   );
 }

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import { Card, CardContent } from '@unwired/ui/components/card';
+import { ProductPageShell } from '@/components/product-page-shell';
 
 export const metadata: Metadata = {
-  title: 'Unwired Calendar | Unwired',
+  title: 'Unwired Calendar',
   description:
     'Unwired Calendar is a coming soon calendar app with on-device AI for remembering what matters.',
 };
@@ -14,12 +14,12 @@ export default function UnwiredCalendarLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-6 py-16 sm:px-10">
-      <Card className="shadow-lg">
-        <CardContent className="pt-(--card-spacing) sm:px-12 sm:py-12">
-          {children}
-        </CardContent>
-      </Card>
-    </main>
+    <ProductPageShell
+      description="A calendar app centered on on-device AI for keeping commitments and context close."
+      index="02"
+      kind="calendar"
+      title="Unwired Calendar">
+      {children}
+    </ProductPageShell>
   );
 }

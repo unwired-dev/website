@@ -1,269 +1,332 @@
-import { Badge } from '@unwired/ui/components/badge';
 import { buttonVariants } from '@unwired/ui/components/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@unwired/ui/components/card';
 import { cn } from '@unwired/ui/lib/utils';
 import Link from 'next/link';
 
-import { BookingModal } from '@/components/booking-modal';
+import {
+  ctaButton,
+  displayTitle,
+  eyebrow,
+  leadCopy,
+  pageGrid,
+  reveal,
+  revealDelay,
+  sectionHeading,
+} from '@/components/marketing-styles';
+import { ArrowUpRight, ProductVisual } from '@/components/product-visual';
 
-interface Product {
-  name: string;
-  outcome: string;
-  description: string;
-  mark: string;
-  detailsHref?: string;
+const bookingUrl = 'https://cal.com/jan-silhan-unwired/frontend-consultation';
+
+const services = [
+  {
+    index: '01',
+    title: 'Implementation',
+    description:
+      'Hands-on delivery for critical React interfaces where quality, momentum, and senior judgment matter.',
+  },
+  {
+    index: '02',
+    title: 'Frontend direction',
+    description:
+      'Clear technical leadership for teams making consequential product and interface decisions.',
+  },
+  {
+    index: '03',
+    title: 'UI architecture',
+    description:
+      'Structures that keep complex interfaces understandable, maintainable, and ready to evolve.',
+  },
+  {
+    index: '04',
+    title: 'Design systems',
+    description:
+      'Reusable foundations shaped by production needs, not component-library theatre.',
+  },
+];
+
+const experience = [
+  'Senior frontend implementation across product teams and React codebases.',
+  'UI architecture and design-system judgment grounded in shipping interfaces.',
+  'Founder-led product work behind Unwired Mail and Unwired Calendar.',
+];
+
+interface ProductFeatureProps {
+  readonly className: string;
+  readonly description: string;
+  readonly href: string;
+  readonly index: string;
+  readonly kind: 'calendar' | 'mail';
+  readonly name: string;
 }
 
-const products: Product[] = [
-  {
-    name: 'Unwired Mail',
-    outcome: 'Privacy-first email with on-device AI.',
-    description:
-      'A coming soon email app for macOS, iOS, and iPadOS focused on personal communication.',
-    mark: 'M',
-    detailsHref: '/unwired-mail',
-  },
-  {
-    name: 'Unwired Calendar',
-    outcome: 'Remember what matters with on-device AI.',
-    description:
-      'A coming soon calendar app for macOS, iOS, and iPadOS focused on personal time.',
-    mark: 'C',
-    detailsHref: '/unwired-calendar',
-  },
-];
-
-const servicePoints = [
-  'Hands-on implementation for critical React interfaces',
-  'Frontend leadership for teams making product delivery decisions',
-  'UI architecture that keeps complex interfaces maintainable',
-  'Design-system work grounded in production code',
-];
-
-const experiencePoints = [
-  'Senior frontend implementation across product teams and React codebases',
-  'UI architecture and design-system judgment for shipping interfaces',
-  'Founder-led product work behind Unwired Mail and Unwired Calendar',
-];
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function ProductFeature({
+  className,
+  description,
+  href,
+  index,
+  kind,
+  name,
+}: ProductFeatureProps) {
   return (
-    <Badge
-      className="tracking-[0.3em] uppercase"
-      variant="secondary">
-      {children}
-    </Badge>
+    <Link
+      className={cn(reveal, 'group col-span-full grid gap-6', className)}
+      href={href}>
+      <ProductVisual kind={kind} />
+      <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
+        <div className="flex flex-col gap-4">
+          <p className={eyebrow}>
+            <span>{index}</span>
+            Coming soon
+          </p>
+          <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
+            {name}
+          </h3>
+        </div>
+        <p className="text-muted-foreground leading-[1.65]">{description}</p>
+        <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
+          Read the product story
+          <ArrowUpRight />
+        </span>
+      </div>
+    </Link>
   );
 }
 
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-24 px-6 py-16 sm:px-10 lg:px-12">
-      <section className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <div className="flex flex-col gap-8">
-          <SectionLabel>Unwired</SectionLabel>
-          <div className="flex flex-col gap-6">
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
-              Unwired builds on-device AI products and helps teams ship better
-              frontends.
-            </h1>
-            <p className="text-muted-foreground max-w-2xl text-lg leading-8 sm:text-xl">
-              The same product judgment behind Unwired Mail and Unwired Calendar
-              is available to product teams through Frontend Consultancy.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Link
-              className={cn(
-                buttonVariants({ size: 'lg' }),
-                'rounded-full px-6',
-              )}
-              href="#products">
-              Explore products
-            </Link>
-            <Link
-              className={cn(
-                buttonVariants({ size: 'lg', variant: 'outline' }),
-                'rounded-full px-6',
-              )}
-              href="#services">
-              See services
-            </Link>
-          </div>
+    <main
+      className="flex-1"
+      id="main-content">
+      <section
+        className={cn(
+          pageGrid,
+          reveal,
+          'min-h-[min(52rem,calc(100svh-5rem))] items-end gap-y-16 pt-[clamp(4rem,9vw,8rem)] pb-16',
+        )}>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-1 md:col-end-9">
+          <p className={eyebrow}>
+            <span>00</span>
+            Products &amp; frontend consultancy
+          </p>
+          <h1
+            className={cn(
+              displayTitle,
+              '[&_em]:block [&_em]:font-[480] [&_em]:text-muted-foreground [&_em]:not-italic',
+            )}>
+            Better products. <em>Better frontends.</em>
+          </h1>
+          <p className="text-muted-foreground max-w-[42rem] text-[clamp(1.15rem,2vw,1.45rem)] leading-[1.6]">
+            Unwired builds on-device AI products and helps ambitious teams ship
+            clearer, stronger React interfaces.
+          </p>
+          <Link
+            className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
+            href="#products">
+            Explore products
+            <ArrowUpRight />
+          </Link>
         </div>
 
-        <Card className="shadow-lg">
-          <CardHeader>
-            <SectionLabel>Portfolio</SectionLabel>
-            <CardTitle className="text-2xl tracking-[-0.03em]">
-              Products first, consultancy with the same standards.
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-base leading-7">
-              Unwired is building on-device AI apps for personal communication
-              and time while helping product teams make stronger frontend
-              decisions.
-            </p>
-          </CardContent>
-        </Card>
+        <aside
+          aria-label="Unwired disciplines"
+          className="border-border col-span-full flex flex-col gap-6 border-t pt-6 md:col-start-10 md:col-end-13">
+          <p className="text-[0.7rem] font-[650] tracking-[0.14em] text-[var(--signal)] uppercase">
+            Practice register
+          </p>
+          <ol className="[&_li_span]:text-muted-foreground grid list-none gap-3 [&_li]:grid [&_li]:min-h-0 [&_li]:grid-cols-[auto_1fr] [&_li]:items-center [&_li]:gap-4 [&_li]:border-b [&_li]:border-[color-mix(in_oklch,var(--border),transparent_35%)] [&_li]:pb-3 [&_li]:text-[0.92rem] [&_li_span]:text-[0.65rem] [&_li_span]:tabular-nums">
+            <li>
+              <span>01</span>
+              On-device AI products
+            </li>
+            <li>
+              <span>02</span>
+              Frontend implementation
+            </li>
+            <li>
+              <span>03</span>
+              UI architecture
+            </li>
+            <li>
+              <span>04</span>
+              Design systems
+            </li>
+          </ol>
+          <p className="text-muted-foreground max-w-96 text-[0.86rem] leading-[1.6]">
+            Independent, founder-led, and close to the work.
+          </p>
+        </aside>
       </section>
 
       <section
-        className="flex flex-col gap-8"
+        className={cn(
+          pageGrid,
+          'gap-y-24 border-t border-border py-[clamp(5rem,11vw,10rem)]',
+        )}
         id="products">
-        <div className="flex max-w-3xl flex-col gap-5">
-          <SectionLabel>Products</SectionLabel>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-            On-device AI for personal communication and time.
+        <div
+          className={cn(
+            reveal,
+            'col-span-full flex flex-col gap-6 md:col-start-1 md:col-end-9',
+          )}>
+          <p className={eyebrow}>
+            <span>01</span>
+            Products
+          </p>
+          <h2 className={sectionHeading}>
+            Personal context should stay personal.
           </h2>
-          <p className="text-muted-foreground text-lg leading-8">
-            Unwired Mail and Unwired Calendar are separate coming soon products
-            under one product philosophy: personal context should stay close to
-            the person using it.
+          <p className={leadCopy}>
+            Unwired Mail and Unwired Calendar are separate products shaped by
+            one idea: useful AI can work close to your communication and time.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {products.map((product) => (
-            <Card
-              className="shadow-lg"
-              key={product.name}>
-              <CardHeader>
-                <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-2xl text-lg font-semibold">
-                  {product.mark}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <CardTitle className="text-2xl tracking-[-0.03em]">
-                      {product.name}
-                    </CardTitle>
-                    <Badge variant="outline">Coming soon</Badge>
-                  </div>
-                  <CardDescription className="text-base leading-7">
-                    {product.outcome}
-                  </CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-6">
-                <p className="text-muted-foreground text-base leading-7">
-                  {product.description}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    className={cn(buttonVariants(), 'w-fit rounded-full')}
-                    href="/products/waitlist">
-                    Join the product waitlist
-                  </Link>
-                  {product.detailsHref ? (
-                    <Link
-                      className={cn(
-                        buttonVariants({ variant: 'link' }),
-                        'w-fit rounded-full px-0',
-                      )}
-                      href={product.detailsHref}>
-                      Read the product proof
-                    </Link>
-                  ) : null}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <ProductFeature
+          className="md:col-start-1 md:col-end-7 md:[&_.product-visual]:min-h-[30rem]"
+          description="Privacy-first email with on-device AI."
+          href="/unwired-mail"
+          index="01"
+          kind="mail"
+          name="Unwired Mail"
+        />
+
+        <ProductFeature
+          className={cn(
+            revealDelay,
+            'md:col-start-7 md:col-end-13 md:mt-32 md:[&_.product-visual]:min-h-[30rem]',
+          )}
+          description="Remember what matters with on-device AI."
+          href="/unwired-calendar"
+          index="02"
+          kind="calendar"
+          name="Unwired Calendar"
+        />
       </section>
 
       <section
         aria-labelledby="services-title"
-        className="grid gap-8 rounded-3xl bg-slate-950 p-8 text-white shadow-xl sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:p-12"
+        className="border-border border-y bg-[var(--surface-1)] py-[clamp(5rem,11vw,10rem)]"
         id="services">
-        <div className="flex flex-col gap-5">
-          <Badge className="w-fit tracking-[0.3em] uppercase">Services</Badge>
-          <h2
-            className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl"
-            id="services-title">
-            Senior frontend consultancy for product teams.
-          </h2>
-          <p className="text-lg leading-8 text-slate-300">
-            Frontend Consultancy is Unwired&apos;s primary service for teams
-            that need senior implementation, clearer React interface direction,
-            and frontend leadership without adding a permanent lead first.
-          </p>
-          <div>
-            <BookingModal />
+        <div className={cn(pageGrid, 'gap-y-16')}>
+          <div
+            className={cn(
+              reveal,
+              'col-span-full flex flex-col items-start gap-6 md:sticky md:top-8 md:col-start-1 md:col-end-6 md:self-start',
+            )}>
+            <p className={eyebrow}>
+              <span>02</span>
+              Frontend Consultancy
+            </p>
+            <h2
+              className={sectionHeading}
+              id="services-title">
+              Senior frontend help, without the hand‑off chain.
+            </h2>
+            <p className={leadCopy}>
+              The same product judgment behind Unwired Mail and Unwired Calendar
+              is available directly to teams that need implementation and
+              frontend leadership.
+            </p>
+            <a
+              className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
+              href={bookingUrl}
+              rel="noreferrer"
+              target="_blank">
+              Book a frontend consultation
+              <ArrowUpRight />
+            </a>
           </div>
-        </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {servicePoints.map((point) => (
-            <Card
-              className="border-white/10 bg-white/10 text-white shadow-none"
-              key={point}>
-              <CardContent className="p-5 text-base leading-7">
-                {point}
-              </CardContent>
-            </Card>
-          ))}
+          <ol
+            className={cn(
+              reveal,
+              revealDelay,
+              'col-span-full list-none md:col-start-7 md:col-end-13 [&_li]:grid [&_li]:grid-cols-[auto_1fr] [&_li]:gap-4 [&_li]:border-t [&_li]:border-border [&_li]:py-6 [&_li>span]:text-[0.7rem] [&_li>span]:text-[var(--signal)] [&_li>span]:tabular-nums [&_h3]:font-heading [&_h3]:text-[1.45rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.035em] [&_p]:col-start-2 [&_p]:leading-[1.65] [&_p]:text-muted-foreground',
+            )}>
+            {services.map((service) => (
+              <li key={service.index}>
+                <span>{service.index}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-        <div className="flex flex-col gap-5">
-          <SectionLabel>Selected Experience</SectionLabel>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-            Founder-led judgment backed by shipped frontend work.
+      <section
+        className={cn(
+          pageGrid,
+          reveal,
+          'gap-y-16 py-[clamp(5rem,11vw,10rem)]',
+        )}>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-1 md:col-end-7">
+          <p className={eyebrow}>
+            <span>03</span>
+            Selected experience
+          </p>
+          <h2 className={sectionHeading}>
+            Judgment backed by shipped frontend work.
           </h2>
-          <p className="text-muted-foreground text-lg leading-8">
+        </div>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-8 md:col-end-13">
+          <p className={leadCopy}>
             Jan Šilhan&apos;s public work history is the reference point for
             Unwired&apos;s frontend leadership, implementation, and product
             taste.
           </p>
+          <ol className="[&_li]:border-border w-full list-none [&_li]:grid [&_li]:grid-cols-[2rem_1fr] [&_li]:gap-4 [&_li]:border-t [&_li]:py-4 [&_li]:leading-[1.6] [&_li>span]:text-xs [&_li>span]:text-[var(--signal)] [&_li>span]:tabular-nums">
+            {experience.map((item, index) => (
+              <li key={item}>
+                <span>0{index + 1}</span>
+                {item}
+              </li>
+            ))}
+          </ol>
           <a
             className={cn(
-              buttonVariants({ variant: 'outline' }),
-              'w-fit rounded-full',
+              buttonVariants({ size: 'lg', variant: 'outline' }),
+              ctaButton,
             )}
             href="https://www.linkedin.com/in/jan-%C5%A1ilhan/"
             rel="noreferrer"
             target="_blank">
             View Jan&apos;s LinkedIn
+            <ArrowUpRight />
           </a>
         </div>
-        <Card className="shadow-lg">
-          <CardContent className="p-6">
-            <ul className="flex flex-col gap-4 text-base leading-7">
-              {experiencePoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
       </section>
 
       <section
-        className="grid gap-8 border-t pt-16 lg:grid-cols-[0.8fr_1.2fr]"
+        className={cn(
+          pageGrid,
+          reveal,
+          'gap-y-16 border-t border-border py-[clamp(5rem,11vw,10rem)]',
+        )}
         id="about">
-        <div className="flex flex-col gap-5">
-          <SectionLabel>About</SectionLabel>
-          <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-            Built by Jan Šilhan
+        <p
+          className={cn(
+            eyebrow,
+            'col-span-full self-start md:col-start-1 md:col-end-4',
+          )}>
+          <span>04</span>
+          About
+        </p>
+        <div className="col-span-full flex flex-col items-start gap-6 md:col-start-5 md:col-end-13">
+          <h2 className={sectionHeading}>
+            Built by Jan Šilhan, close to the product and the code.
           </h2>
-        </div>
-        <div className="flex flex-col gap-6 text-lg leading-8">
-          <p className="text-muted-foreground">
-            Jan builds on-device AI products for personal communication and time
-            while helping product teams ship high-quality React interfaces.
-          </p>
-          <p className="text-muted-foreground">
-            Unwired keeps the product and service paths connected: the product
-            work sharpens the consultancy judgment, and the consultancy keeps
-            the product standards grounded in real frontend delivery.
-          </p>
+          <div className="grid gap-6 md:grid-cols-2">
+            <p className={leadCopy}>
+              Jan builds on-device AI products for personal communication and
+              time while helping product teams ship high-quality React
+              interfaces.
+            </p>
+            <p className={leadCopy}>
+              The product work sharpens the consultancy judgment. The
+              consultancy keeps the product standards grounded in real frontend
+              delivery.
+            </p>
+          </div>
         </div>
       </section>
     </main>
