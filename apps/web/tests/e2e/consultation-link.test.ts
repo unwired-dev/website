@@ -20,3 +20,14 @@ test('consultation CTAs use the canonical booking page', async ({ page }) => {
   await expect(footerBookingLink).toHaveAttribute('href', bookingUrl);
   await expect(footerBookingLink).toHaveAttribute('target', '_blank');
 });
+
+test('footer stays within the viewport', async ({ page }) => {
+  await page.goto('/');
+
+  const widths = await page.evaluate(() => ({
+    content: document.documentElement.scrollWidth,
+    viewport: window.innerWidth,
+  }));
+
+  expect(widths.content).toBeLessThanOrEqual(widths.viewport);
+});

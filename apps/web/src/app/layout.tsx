@@ -129,7 +129,7 @@ export default function RootLayout({
               <Link href="/#services">Services</Link>
               <Link href="/products/waitlist">Product waitlist</Link>
             </nav>
-            <div className="col-start-3 col-end-5 flex flex-col items-start gap-4 md:col-start-9 md:col-end-13">
+            <div className="col-span-full flex flex-col items-start gap-4 md:col-start-9 md:col-end-13">
               <p className="text-muted-foreground max-w-md leading-[1.6]">
                 Have a frontend problem worth solving?
               </p>
