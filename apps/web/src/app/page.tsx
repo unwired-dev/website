@@ -49,6 +49,48 @@ const experience = [
   'Founder-led product work behind Unwired Mail and Unwired Calendar.',
 ];
 
+interface ProductFeatureProps {
+  readonly className: string;
+  readonly description: string;
+  readonly href: string;
+  readonly index: string;
+  readonly kind: 'calendar' | 'mail';
+  readonly name: string;
+}
+
+function ProductFeature({
+  className,
+  description,
+  href,
+  index,
+  kind,
+  name,
+}: ProductFeatureProps) {
+  return (
+    <Link
+      className={cn(reveal, 'group col-span-full grid gap-6', className)}
+      href={href}>
+      <ProductVisual kind={kind} />
+      <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
+        <div className="flex flex-col gap-4">
+          <p className={eyebrow}>
+            <span>{index}</span>
+            Coming soon
+          </p>
+          <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
+            {name}
+          </h3>
+        </div>
+        <p className="text-muted-foreground leading-[1.65]">{description}</p>
+        <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
+          Read the product story
+          <ArrowUpRight />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function Home() {
   return (
     <main
@@ -76,25 +118,12 @@ export default function Home() {
             Unwired builds on-device AI products and helps ambitious teams ship
             clearer, stronger React interfaces.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
-              href="#products">
-              Explore products
-              <ArrowUpRight />
-            </Link>
-            <a
-              className={cn(
-                buttonVariants({ size: 'lg', variant: 'outline' }),
-                ctaButton,
-              )}
-              href={bookingUrl}
-              rel="noreferrer"
-              target="_blank">
-              Book a consultation
-              <ArrowUpRight />
-            </a>
-          </div>
+          <Link
+            className={cn(buttonVariants({ size: 'lg' }), ctaButton)}
+            href="#products">
+            Explore products
+            <ArrowUpRight />
+          </Link>
         </div>
 
         <aside
@@ -151,60 +180,26 @@ export default function Home() {
           </p>
         </div>
 
-        <Link
-          className={cn(
-            reveal,
-            'group col-span-full grid gap-6 md:col-start-1 md:col-end-7 md:[&_.product-visual]:min-h-[30rem]',
-          )}
-          href="/unwired-mail">
-          <ProductVisual kind="mail" />
-          <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
-            <div className="flex flex-col gap-4">
-              <p className={eyebrow}>
-                <span>01</span>
-                Coming soon
-              </p>
-              <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
-                Unwired Mail
-              </h3>
-            </div>
-            <p className="text-muted-foreground leading-[1.65]">
-              Privacy-first email with on-device AI.
-            </p>
-            <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
-              Read the product story
-              <ArrowUpRight />
-            </span>
-          </div>
-        </Link>
+        <ProductFeature
+          className="md:col-start-1 md:col-end-7 md:[&_.product-visual]:min-h-[30rem]"
+          description="Privacy-first email with on-device AI."
+          href="/unwired-mail"
+          index="01"
+          kind="mail"
+          name="Unwired Mail"
+        />
 
-        <Link
+        <ProductFeature
           className={cn(
-            reveal,
             revealDelay,
-            'group col-span-full grid gap-6 md:col-start-7 md:col-end-13 md:mt-32 md:[&_.product-visual]:min-h-[30rem]',
+            'md:col-start-7 md:col-end-13 md:mt-32 md:[&_.product-visual]:min-h-[30rem]',
           )}
-          href="/unwired-calendar">
-          <ProductVisual kind="calendar" />
-          <div className="border-border grid gap-6 border-b pb-6 md:grid-cols-[1.15fr_0.85fr]">
-            <div className="flex flex-col gap-4">
-              <p className={eyebrow}>
-                <span>02</span>
-                Coming soon
-              </p>
-              <h3 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.95] font-[580] tracking-[-0.055em]">
-                Unwired Calendar
-              </h3>
-            </div>
-            <p className="text-muted-foreground leading-[1.65]">
-              Remember what matters with on-device AI.
-            </p>
-            <span className="col-span-full inline-flex items-center gap-2 text-[0.88rem] font-[650] [&_svg]:size-4 [&_svg]:transition-transform [&_svg]:duration-[180ms] [&_svg]:ease-[var(--ease-out-expo)] group-hover:[&_svg]:translate-x-[0.12rem] group-hover:[&_svg]:-translate-y-[0.12rem]">
-              Read the product story
-              <ArrowUpRight />
-            </span>
-          </div>
-        </Link>
+          description="Remember what matters with on-device AI."
+          href="/unwired-calendar"
+          index="02"
+          kind="calendar"
+          name="Unwired Calendar"
+        />
       </section>
 
       <section
