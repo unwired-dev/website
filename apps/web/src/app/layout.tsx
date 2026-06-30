@@ -141,7 +141,7 @@ export default function RootLayout({
                 href="https://cal.com/jan-silhan-unwired/frontend-consultation"
                 rel="noreferrer"
                 target="_blank">
-                Book a consultation
+                Book a frontend consultation
                 <ArrowUpRight />
               </a>
               <a

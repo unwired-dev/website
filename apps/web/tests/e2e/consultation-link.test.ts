@@ -8,10 +8,15 @@ test('consultation CTAs use the canonical booking page', async ({ page }) => {
   const servicesSection = page.getByRole('region', {
     name: 'Senior frontend help, without the hand‑off chain.',
   });
-  const bookingLink = servicesSection.getByRole('link', {
+  const servicesBookingLink = servicesSection.getByRole('link', {
+    name: 'Book a frontend consultation',
+  });
+  const footerBookingLink = page.getByRole('contentinfo').getByRole('link', {
     name: 'Book a frontend consultation',
   });
 
-  await expect(bookingLink).toHaveAttribute('href', bookingUrl);
-  await expect(bookingLink).toHaveAttribute('target', '_blank');
+  await expect(servicesBookingLink).toHaveAttribute('href', bookingUrl);
+  await expect(servicesBookingLink).toHaveAttribute('target', '_blank');
+  await expect(footerBookingLink).toHaveAttribute('href', bookingUrl);
+  await expect(footerBookingLink).toHaveAttribute('target', '_blank');
 });
