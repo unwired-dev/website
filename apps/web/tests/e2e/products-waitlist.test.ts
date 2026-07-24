@@ -60,6 +60,24 @@ test('product waitlist submits selected interests', async ({ page }) => {
 
   await page.goto('/products/waitlist');
 
+  const waitlistForm = page.getByRole('region', {
+    name: 'Tell us what you care about.',
+  });
+  const consentNotice = page.getByText(
+    'I can withdraw consent at any time by emailing',
+  );
+
+  await expect(consentNotice).toBeVisible();
+  await expect(
+    waitlistForm.getByRole('link', { name: 'Privacy Notice' }),
+  ).toHaveAttribute('href', '/privacy');
+  await expect(
+    waitlistForm.getByRole('link', { name: 'silhan@unwired.dev' }),
+  ).toHaveAttribute(
+    'href',
+    'mailto:silhan@unwired.dev?subject=Withdraw%20product%20updates',
+  );
+
   await page
     .getByRole('textbox', { name: 'Email address' })
     .fill('person@example.com');

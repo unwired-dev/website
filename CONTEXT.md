@@ -8,6 +8,30 @@ This context defines the business language for Unwired's public company website.
 The company behind the website, offering frontend consultancy while building its own on-device AI products.
 _Avoid_: Agency, studio, vendor
 
+**Legal Entity**:
+Unwired, s.r.o., the Czech limited liability company that operates the Company Website and presents its services and Products under the Unwired name.
+_Avoid_: Unwired brand, Jan Šilhan
+
+**Company Identification**:
+The Legal Entity's registered name, registered office, IČO, DIČ, and Commercial Register entry, displayed directly in the global Company Website footer.
+_Avoid_: Imprint page, legal notice page, brand-only copyright
+
+**Privacy Notice**:
+The English-language Company Website disclosure explaining how the Legal Entity processes website, theme-preference, and Product Waitlist data. Official Czech company identifiers remain untranslated.
+_Avoid_: Privacy policy, cookie policy, terms and conditions
+
+**Website Privacy Baseline**:
+The Company Website uses only visitor-requested theme storage and processing needed for hosting, security, and the Product Waitlist. It does not use analytics, advertising trackers, third-party embeds, fingerprinting, or other nonessential browser storage.
+_Avoid_: Cookie banner by default, analytics by default, silent tracking changes
+
+**Website Service Providers**:
+Vercel provides website hosting, Resend delivers Product Waitlist email, Google Workspace receives and stores internal website and privacy email, and Cal.eu handles consultation bookings initiated from the Company Website.
+_Avoid_: Undisclosed processor, generic third-party services
+
+**Privacy Contact**:
+The monitored email address silhan@unwired.dev, used for privacy questions, data-subject requests, and withdrawal of Product Waitlist consent.
+_Avoid_: Product support address, unmonitored privacy alias
+
 **Unwired Mail**:
 A coming soon privacy-first email client with on-device AI, presented as a first-class Unwired product.
 _Avoid_: Secure-first email, available app, side project, demo app, product proof
@@ -17,7 +41,7 @@ A coming soon calendar product centered on on-device AI for remembering what mat
 _Avoid_: Available app, reminders you never forget, suite module, scheduling platform, generic calendar app
 
 **Company Website**:
-The public marketing site for Unwired's product and consultancy portfolio, with consultancy remaining the primary revenue conversion path.
+The public marketing site at https://unwired.dev for Unwired's product and consultancy portfolio, with consultancy remaining the primary revenue conversion path.
 _Avoid_: Consultancy-only site, product-only site, docs site
 
 **Products**:
@@ -41,8 +65,8 @@ The primary Unwired service offer for product teams that need senior frontend im
 _Avoid_: General software consulting, full-service development, staff augmentation
 
 **Consultancy Lead**:
-A prospective client engagement for React or frontend consulting services initiated through the website.
-_Avoid_: User signup, app install
+A prospective client engagement for React or frontend consulting services initiated through the website. Its booking data is used only for the requested consultation and any resulting client relationship, not unrelated marketing.
+_Avoid_: User signup, app install, newsletter subscriber
 
 **Primary Call To Action**:
 The main Services conversion action is to book a frontend consultation for Frontend Consultancy through https://cal.eu/jan-silhan-unwired/frontend-consultation.
@@ -52,13 +76,21 @@ _Avoid_: Book a generic consultation, sign up, install app, get started
 The fallback contact address for Frontend Consultancy inquiries is silhan@unwired.dev.
 _Avoid_: Generic contact address, product support address
 
+**Consultation Booking Retention**:
+Unsuccessful consultation-booking records are deleted 12 months after the last relevant contact. Bookings that become client engagements follow applicable contractual, accounting, and legal-obligation retention periods.
+_Avoid_: Indefinite lead retention, deleting active client records
+
 **Product Call To Action**:
 The product conversion action for coming soon Unwired products is to join the waitlist.
 _Avoid_: Download, install, buy now
 
 **Product Waitlist**:
-A shared page-based interest list for coming soon Unwired products, allowing prospective users to express interest in Mail, Calendar, or both, including platform interest. Product updates may cover both products by default.
-_Avoid_: Separate app waitlists, product signup, app account
+A shared page-based interest list for Unwired Mail and Unwired Calendar, allowing prospective users to express product and platform interest. Consent covers updates about both products by default, but not consultancy, unrelated products, or third-party marketing; it can be withdrawn through the Privacy Contact.
+_Avoid_: Separate app waitlists, product signup, app account, general marketing list
+
+**Product Waitlist Retention**:
+Product Waitlist data is kept until consent is withdrawn or the relevant waitlist closes, then deleted within 30 days except for the minimum record needed to demonstrate consent or withdrawal.
+_Avoid_: Indefinite retention, fixed marketing archive
 
 **Waitlist API**:
 The tRPC backend surface in the Company Website app that handles Product Waitlist submissions and sends Resend email notifications.

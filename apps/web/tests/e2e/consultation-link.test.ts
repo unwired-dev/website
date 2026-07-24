@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const bookingUrl = 'https://cal.com/jan-silhan-unwired/frontend-consultation';
+const bookingUrl = 'https://cal.eu/jan-silhan-unwired/frontend-consultation';
 
 test('consultation CTAs use the canonical booking page', async ({ page }) => {
   await page.goto('/');
@@ -19,6 +19,12 @@ test('consultation CTAs use the canonical booking page', async ({ page }) => {
   await expect(servicesBookingLink).toHaveAttribute('target', '_blank');
   await expect(footerBookingLink).toHaveAttribute('href', bookingUrl);
   await expect(footerBookingLink).toHaveAttribute('target', '_blank');
+  await expect(
+    servicesSection.getByText('Booking is handled by Cal.eu.'),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('contentinfo').getByText('Booking is handled by Cal.eu.'),
+  ).toBeVisible();
 });
 
 test('footer stays within the viewport', async ({ page }) => {

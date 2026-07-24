@@ -6,6 +6,7 @@ import { appRouter } from '@/server/routers/root';
 import { createCallerFactory } from '@/server/trpc';
 
 interface ResendEmailRequest {
+  readonly text: string;
   readonly to: readonly string[];
 }
 
@@ -25,6 +26,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function isResendEmailRequest(value: unknown): value is ResendEmailRequest {
   return (
     isRecord(value) &&
+    typeof value.text === 'string' &&
     Array.isArray(value.to) &&
     value.to.every((recipient) => typeof recipient === 'string')
   );
@@ -76,6 +78,12 @@ test('waitlist.join accepts valid waitlist submissions', async () => {
   });
   expect(emailRequests).toHaveLength(2);
   expect(emailRequests[0]?.to).toEqual(['person@example.com']);
+  expect(emailRequests[0]?.text).toContain(
+    'Privacy Notice: https://unwired.dev/privacy',
+  );
+  expect(emailRequests[0]?.text).toContain(
+    'mailto:silhan@unwired.dev?subject=Withdraw%20product%20updates',
+  );
   expect(emailRequests[1]?.to).toEqual(['jan@example.com']);
 });
 
