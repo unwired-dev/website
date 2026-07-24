@@ -2,6 +2,7 @@ import { buttonVariants } from '@unwired/ui/components/button';
 import { cn } from '@unwired/ui/lib/utils';
 import Link from 'next/link';
 
+import { BookingPrivacyNote } from '@/components/booking-privacy-note';
 import {
   ctaButton,
   displayTitle,
@@ -13,8 +14,7 @@ import {
   sectionHeading,
 } from '@/components/marketing-styles';
 import { ArrowUpRight, ProductVisual } from '@/components/product-visual';
-
-const bookingUrl = 'https://cal.com/jan-silhan-unwired/frontend-consultation';
+import { bookingUrl } from '@/lib/site';
 
 const services = [
   {
@@ -234,6 +234,7 @@ export default function Home() {
               Book a frontend consultation
               <ArrowUpRight />
             </a>
+            <BookingPrivacyNote />
           </div>
 
           <ol

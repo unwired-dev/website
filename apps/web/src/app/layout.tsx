@@ -6,10 +6,12 @@ import { Atkinson_Hyperlegible_Next, Familjen_Grotesk } from 'next/font/google';
 import Link from 'next/link';
 import Script from 'next/script';
 
+import { BookingPrivacyNote } from '@/components/booking-privacy-note';
 import { ctaButton, pageGrid } from '@/components/marketing-styles';
 import { ArrowUpRight } from '@/components/product-visual';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { AppTRPCProvider } from '@/components/trpc-provider';
+import { bookingUrl, siteUrl } from '@/lib/site';
 
 import '@unwired/ui/globals.css';
 
@@ -44,6 +46,7 @@ const wordmark =
   'inline-flex min-h-11 items-center gap-[0.55rem] font-heading text-[1.15rem] font-[650] tracking-[-0.04em] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Unwired',
     template: '%s | Unwired',
@@ -104,7 +107,7 @@ export default function RootLayout({
           <footer
             className={cn(
               pageGrid,
-              'gap-y-16 border-t border-border pt-24 pb-[max(2rem,env(safe-area-inset-bottom))] [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-3 [&_a:focus-visible]:outline-ring',
+              'gap-y-14 border-t border-border pt-24 pb-[max(2rem,env(safe-area-inset-bottom))] [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-3 [&_a:focus-visible]:outline-ring',
             )}>
             <div className="col-span-full flex flex-col items-start gap-4 md:col-start-1 md:col-end-7">
               <Link
@@ -138,7 +141,7 @@ export default function RootLayout({
                   buttonVariants({ size: 'lg', variant: 'outline' }),
                   ctaButton,
                 )}
-                href="https://cal.com/jan-silhan-unwired/frontend-consultation"
+                href={bookingUrl}
                 rel="noreferrer"
                 target="_blank">
                 Book a frontend consultation
@@ -149,10 +152,31 @@ export default function RootLayout({
                 href="mailto:silhan@unwired.dev">
                 silhan@unwired.dev
               </a>
+              <BookingPrivacyNote />
             </div>
-            <p className="border-border text-muted-foreground col-span-full border-t pt-4 text-xs">
-              © {new Date().getFullYear()} Unwired
-            </p>
+            <div className="border-border text-muted-foreground col-span-full grid gap-8 border-t pt-6 text-xs leading-[1.7] md:grid-cols-12">
+              <address className="grid gap-1 not-italic md:col-start-1 md:col-end-9">
+                <p className="text-foreground font-[650]">Unwired, s.r.o.</p>
+                <p>Soběšická 184/36, Husovice, 614 00 Brno, Czech Republic</p>
+                <p className="flex flex-wrap gap-x-3">
+                  <span>IČO 19711131</span>
+                  <span aria-hidden="true">·</span>
+                  <span>DIČ CZ19711131</span>
+                </p>
+                <p className="max-w-2xl">
+                  Registered in the Commercial Register maintained by the
+                  Regional Court in Brno, section C, file 135646.
+                </p>
+              </address>
+              <div className="flex flex-col items-start gap-3 md:col-start-10 md:col-end-13">
+                <Link
+                  className="text-foreground underline decoration-[var(--signal)] underline-offset-[0.24em] transition-colors duration-[160ms] ease-[var(--ease-out-quart)] hover:text-[var(--signal)]"
+                  href="/privacy">
+                  Privacy Notice
+                </Link>
+                <p>© {new Date().getFullYear()} Unwired, s.r.o.</p>
+              </div>
+            </div>
           </footer>
         </div>
       </body>

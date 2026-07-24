@@ -1,3 +1,5 @@
+import { privacyUrl, withdrawalMailto } from '@/lib/site';
+
 import type { WaitlistSubmission } from './validation';
 
 interface SendConfirmationOptions {
@@ -99,7 +101,10 @@ function renderConfirmationText(submission: WaitlistSubmission): string {
     `Product interest: ${products}.`,
     `Platform interest: ${platforms}.`,
     '',
-    'Unwired product updates may cover both Unwired Mail and Unwired Calendar by default.',
+    'Your consent covers occasional product updates about Unwired Mail and Unwired Calendar.',
+    '',
+    `Privacy Notice: ${privacyUrl}`,
+    `Withdraw consent at any time: ${withdrawalMailto}`,
     '',
     'Jan Silhan',
     'Unwired',

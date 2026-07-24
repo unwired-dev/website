@@ -51,6 +51,7 @@ Pull requests get preview deployments when the Vercel Git integration is enabled
 ## Waitlist API
 
 Product waitlist submissions are handled through the app-owned tRPC backend at `apps/web/src/app/api/trpc/[trpc]/route.ts`.
+The route runs in Vercel's Frankfurt region (`fra1`).
 
 Required environment variables:
 
@@ -58,11 +59,17 @@ Required environment variables:
 - `WAITLIST_FROM_EMAIL` — verified sender for waitlist confirmations
 - `WAITLIST_NOTIFY_EMAIL` — internal recipient for collected waitlist submissions
 
+Waitlist data is retained until consent is withdrawn or the relevant waitlist
+closes, then deleted within 30 days except for the minimum record needed to
+demonstrate consent or withdrawal. Every product-update email must include a
+direct, free way to withdraw consent through `silhan@unwired.dev`.
+
 ## Current routes
 
 - `/` homepage
 - `/api/trpc` tRPC backend API
 - `/products/waitlist` shared Product Waitlist
+- `/privacy` Privacy Notice
 - `/unwired-mail` product proof page
 - `/unwired-calendar` product proof page
 - `/writing` repo-owned writing index, intentionally omitted from navigation

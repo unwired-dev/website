@@ -6,9 +6,11 @@ import { useForm } from '@tanstack/react-form';
 import { useMutation } from '@tanstack/react-query';
 import { buttonVariants } from '@unwired/ui/components/button';
 import { cn } from '@unwired/ui/lib/utils';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { ctaButton } from '@/components/marketing-styles';
+import { privacyContactEmail, withdrawalMailto } from '@/lib/site';
 import { useTRPC } from '@/trpc/client';
 
 const productOptions = [
@@ -255,12 +257,13 @@ export function ProductWaitlistForm() {
 
       <form.Field name="productUpdateConsent">
         {(field) => (
-          <label className="text-muted-foreground has-focus-visible:outline-ring flex cursor-pointer gap-3 text-[0.9rem] leading-[1.6] has-focus-visible:outline-2 has-focus-visible:outline-offset-3">
+          <div className="text-muted-foreground grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 text-[0.9rem] leading-[1.6]">
             <input
               required
               aria-label="Consent for occasional Unwired product updates"
               checked={field.state.value}
               className="mt-1 size-4 shrink-0 accent-[var(--signal)]"
+              id="product-update-consent"
               name={field.name}
               onBlur={field.handleBlur}
               onChange={(event) => {
@@ -269,11 +272,30 @@ export function ProductWaitlistForm() {
               type="checkbox"
               value="true"
             />
-            <span>
-              I agree to receive occasional Unwired product updates. Updates may
-              cover both Unwired Mail and Unwired Calendar by default.
-            </span>
-          </label>
+            <div className="grid gap-2">
+              <label
+                className="text-foreground cursor-pointer"
+                htmlFor="product-update-consent">
+                I agree to receive occasional product updates about Unwired Mail
+                and Unwired Calendar.
+              </label>
+              <p>
+                I can withdraw consent at any time by emailing{' '}
+                <a
+                  className="text-foreground underline decoration-[var(--signal)] underline-offset-[0.22em] transition-colors duration-[160ms] ease-[var(--ease-out-quart)] hover:text-[var(--signal)]"
+                  href={withdrawalMailto}>
+                  {privacyContactEmail}
+                </a>
+                . See the{' '}
+                <Link
+                  className="text-foreground underline decoration-[var(--signal)] underline-offset-[0.22em] transition-colors duration-[160ms] ease-[var(--ease-out-quart)] hover:text-[var(--signal)]"
+                  href="/privacy">
+                  Privacy Notice
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
         )}
       </form.Field>
 
