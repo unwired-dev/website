@@ -51,7 +51,7 @@ Pull requests get preview deployments when the Vercel Git integration is enabled
 ## Waitlist API
 
 Product waitlist submissions are handled through the app-owned tRPC backend at `apps/web/src/app/api/trpc/[trpc]/route.ts`.
-The route runs in Vercel's Frankfurt region (`fra1`).
+The route is preferred to run in Vercel's Frankfurt region (`fra1`).
 
 Required environment variables:
 
