@@ -14,10 +14,13 @@ import { privacyContactEmail, withdrawalMailto } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Privacy Notice',
-  description:
-    'How Unwired, s.r.o. handles website, product waitlist, and consultation-booking data.',
+  description: 'How Unwired, s.r.o. handles Company Website and Product data.',
   alternates: {
     canonical: '/privacy',
+  },
+  robots: {
+    follow: false,
+    index: false,
   },
 };
 
@@ -29,6 +32,11 @@ const privacySections = [
   { href: '#theme-preference', label: 'Theme preference' },
   { href: '#product-waitlist', label: 'Product waitlist' },
   { href: '#consultation-bookings', label: 'Consultation bookings' },
+  { href: '#product-accounts', label: 'Product Accounts' },
+  { href: '#product-sync', label: 'Product Sync' },
+  { href: '#mailbox-connections', label: 'Mailbox Connections' },
+  { href: '#push-notifications', label: 'Push notifications' },
+  { href: '#ai-assistance', label: 'AI assistance' },
   { href: '#service-providers', label: 'Service providers' },
   { href: '#your-rights', label: 'Your rights' },
 ] as const;
@@ -75,11 +83,27 @@ export default function PrivacyPage() {
           <h1 className={cn(sectionHeading, 'max-w-[11ch]')}>Privacy Notice</h1>
           <div className="grid max-w-[42rem] gap-3">
             <p className="font-heading text-[clamp(1.5rem,3vw,2.4rem)] leading-[1.05] font-[540] tracking-[-0.04em]">
-              What this site knows—and why.
+              What Unwired knows and why.
             </p>
             <p className="text-muted-foreground text-[1.15rem] leading-[1.7]">
-              A plain-language register of the limited data Unwired uses to run
-              this website, manage product interest, and arrange consultations.
+              A plain-language register of the data Unwired uses to run the
+              Company Website and Products.
+            </p>
+          </div>
+        </div>
+
+        <div className="col-span-full md:col-start-1 md:col-end-10">
+          <div
+            className="grid gap-3 border-l-2 border-[var(--signal)] bg-[color-mix(in_oklch,var(--signal),transparent_92%)] px-5 py-4"
+            role="note">
+            <p className="font-[650] text-[var(--signal)]">
+              Draft for legal review
+            </p>
+            <p className="text-muted-foreground leading-[1.65]">
+              The Product disclosures in this combined notice are provisional.
+              Unwired must complete legal review and confirm production service
+              providers, hosting regions, transfer safeguards, and retention
+              criteria before this draft takes effect.
             </p>
           </div>
         </div>
@@ -105,9 +129,9 @@ export default function PrivacyPage() {
           </div>
           <div>
             <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
-              Effective
+              Status
             </dt>
-            <dd>24 July 2026</dd>
+            <dd>Provisional draft · 24 August 2026</dd>
           </div>
         </dl>
       </section>
@@ -130,7 +154,7 @@ export default function PrivacyPage() {
                 href={section.href}
                 key={section.href}>
                 <span className="text-[0.65rem] text-[var(--signal)] tabular-nums">
-                  0{index + 1}
+                  {String(index + 1).padStart(2, '0')}
                 </span>
                 {section.label}
               </a>
@@ -268,8 +292,133 @@ export default function PrivacyPage() {
           </PrivacySection>
 
           <PrivacySection
-            id="service-providers"
+            id="product-accounts"
             index="05"
+            title="Product Accounts and sign-in">
+            <p>
+              Unwired Products use a Product Account to identify you and your
+              Trusted Devices. Sign in with Apple supplies an account token that
+              lets Unwired create or resume the same Product Account. Unwired
+              does not receive your Apple password.
+            </p>
+            <p>
+              Unwired processes the Product Account identifier, Trusted Device
+              identifiers and names, device platform and last-seen time,
+              credential digests, and security state. This Operational Account
+              Data is needed to provide account access, secure the Products,
+              route Product operations, and prevent abuse. The legal bases are
+              performance of the Product agreement and Unwired&apos;s legitimate
+              interest in protecting accounts and services.
+            </p>
+            <p>
+              Active Product Account data is kept while the account exists.
+              Account deletion removes active account records, subject to
+              narrowly necessary legal, security, backup, and technical
+              convergence records. Unwired must confirm the production retention
+              criteria for those residual records before this draft takes
+              effect.
+            </p>
+            <p>
+              The Products are not directed at children. Product users must be
+              at least 16 and have any permission from a parent or guardian that
+              the law where they live requires.
+            </p>
+          </PrivacySection>
+
+          <PrivacySection
+            id="product-sync"
+            index="06"
+            title="Trusted Devices and Product Sync">
+            <p>
+              Product Sync transfers Product-owned settings and state between
+              Trusted Devices using end-to-end encryption. Unwired&apos;s
+              backend stores opaque ciphertext and the routing information
+              needed to deliver it. Unwired cannot decrypt Product Sync without
+              the Recovery Key held by you or your Trusted Devices.
+            </p>
+            <p>
+              Unwired processes encrypted Product Sync data to provide the sync
+              function you request. It remains while the Product Account exists
+              and is removed from active systems when the account is deleted,
+              subject to the residual-record criteria described above.
+            </p>
+            <p>
+              Revoking a Trusted Device or deleting a Product Account cannot
+              guarantee erasure from a device that is offline or compromised.
+              Reachable devices receive a request to purge local Product data
+              and credentials when they reconnect.
+            </p>
+          </PrivacySection>
+
+          <PrivacySection
+            id="mailbox-connections"
+            index="07"
+            title="Mailbox Connections">
+            <p>
+              A Mailbox Connection lets a Trusted Device access a mailbox you
+              choose through Google, Microsoft, Exchange Web Services, or a
+              standards-based IMAP and SMTP provider. You authorize each Mailbox
+              Connection on each Trusted Device independently.
+            </p>
+            <p>
+              Provider credentials and access tokens remain on the Trusted
+              Device. Mail, attachments, contacts, and calendar information are
+              processed locally when a Product performs the actions you request.
+              Drafts and attachments are transmitted to your chosen Mail
+              Provider when you send or save them there. Product-owned records
+              included in Product Sync remain end-to-end encrypted.
+            </p>
+            <p>
+              The legal basis is performance of the Product agreement. Your Mail
+              Provider remains responsible for the mailbox it hosts and applies
+              its own privacy terms. Deleting a Product Account does not delete
+              provider mail or necessarily revoke authorization issued by the
+              provider.
+            </p>
+          </PrivacySection>
+
+          <PrivacySection
+            id="push-notifications"
+            index="08"
+            title="Push notifications">
+            <p>
+              When notifications or scheduled Product operations are enabled,
+              Unwired processes Apple Push Notification service tokens, device
+              routes, provider-verification metadata, and limited operational
+              records needed to deliver or verify the requested operation. Push
+              payloads are kept to the minimum needed for routing.
+            </p>
+            <p>
+              The legal bases are performance of the Product agreement and
+              Unwired&apos;s legitimate interest in secure, reliable delivery.
+              These records remain only while the device, route, or scheduled
+              operation needs them, subject to narrowly necessary security and
+              technical convergence records.
+            </p>
+          </PrivacySection>
+
+          <PrivacySection
+            id="ai-assistance"
+            index="09"
+            title="On-device AI assistance">
+            <p>
+              Optional AI assistance uses supported Apple models on your device.
+              The relevant local mail context and generated preview are not sent
+              to Unwired or to an Unwired cloud model. A preview is temporary
+              unless you accept it, at which point it becomes content you chose
+              to save, send, or synchronize.
+            </p>
+            <p>
+              AI assistance is off by default and requires an explicit action.
+              Unwired does not use Product data for automated decisions about
+              you or for profiling. Verify generated output against the linked
+              source material before using it.
+            </p>
+          </PrivacySection>
+
+          <PrivacySection
+            id="service-providers"
+            index="10"
             title="Service providers and transfers">
             <p>Unwired uses these providers only for the stated purposes:</p>
             <ul>
@@ -290,6 +439,23 @@ export default function PrivacyPage() {
                 <strong className="text-foreground">Cal.eu</strong> for
                 EU-hosted consultation scheduling.
               </li>
+              <li>
+                <strong className="text-foreground">Convex</strong> for Product
+                Account operations, Trusted Device routing, push coordination,
+                and storage of end-to-end encrypted Product Sync data.
+              </li>
+              <li>
+                <strong className="text-foreground">Apple</strong> for Sign in
+                with Apple, push delivery, and supported device services.
+              </li>
+              <li>
+                <strong className="text-foreground">
+                  Your chosen Mail Providers
+                </strong>{' '}
+                for mailbox operations you request. These can include Google,
+                Microsoft, an organization&apos;s Exchange server, or an IMAP
+                and SMTP provider, each acting under its own privacy terms.
+              </li>
             </ul>
             <p>
               Vercel, Resend, and Google may process data outside the European
@@ -299,6 +465,12 @@ export default function PrivacyPage() {
               records in the United States for its standard service.
             </p>
             <p>
+              Before this draft takes effect, Unwired must confirm the
+              production Convex deployment location, the role of each Product
+              recipient, and the transfer safeguard used wherever an adequacy
+              decision does not apply.
+            </p>
+            <p>
               Unwired does not sell personal data. Data is disclosed to public
               authorities only where legally required.
             </p>
@@ -306,7 +478,7 @@ export default function PrivacyPage() {
 
           <PrivacySection
             id="your-rights"
-            index="06"
+            index="11"
             title="Your rights">
             <p>
               Depending on the circumstances, you may ask Unwired for access,
@@ -333,8 +505,16 @@ export default function PrivacyPage() {
                 target="_blank">
                 Czech Office for Personal Data Protection
               </a>
-              . Unwired does not use personal data from this website for
+              . Unwired does not use Company Website or Product data for
               automated decision-making or profiling.
+            </p>
+            <p>
+              Product Account information is required to create and operate an
+              account. Without it, Unwired cannot provide account-backed Product
+              functions. Push notifications and AI assistance are optional. Mail
+              and related content obtained from a Mail Provider comes from the
+              account you choose to connect and is processed only for the
+              Product operations you request.
             </p>
           </PrivacySection>
 
@@ -344,11 +524,17 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-muted-foreground mt-4 max-w-[48rem] leading-[1.75]">
               Unwired will update this page and its effective date when the
-              website&apos;s data practices materially change. Adding analytics,
-              advertising, third-party embeds, or nonessential browser storage
-              requires a new privacy and consent review before activation.
+              Company Website or Product data practices materially change.
+              Adding analytics, advertising, third-party embeds, nonessential
+              browser storage, or new Product processing requires a new privacy
+              and consent review before activation.
             </p>
-            <p className="mt-8">
+            <p className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+              <Link
+                className={legalLink}
+                href="/terms">
+                Read the Terms of Use
+              </Link>
               <Link
                 className={legalLink}
                 href="/">

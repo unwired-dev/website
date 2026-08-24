@@ -174,6 +174,11 @@ export default function RootLayout({
                   href="/privacy">
                   Privacy Notice
                 </Link>
+                <Link
+                  className="text-foreground underline decoration-[var(--signal)] underline-offset-[0.24em] transition-colors duration-[160ms] ease-[var(--ease-out-quart)] hover:text-[var(--signal)]"
+                  href="/terms">
+                  Terms of Use
+                </Link>
                 <p>© {new Date().getFullYear()} Unwired, s.r.o.</p>
               </div>
             </div>

@@ -17,8 +17,12 @@ The Legal Entity's registered name, registered office, IČO, DIČ, and Commercia
 _Avoid_: Imprint page, legal notice page, brand-only copyright
 
 **Privacy Notice**:
-The English-language Company Website disclosure explaining how the Legal Entity processes website, theme-preference, and Product Waitlist data. Official Czech company identifiers remain untranslated.
+The English-language Company Website disclosure explaining how the Legal Entity processes Company Website and Product data. It covers website use, theme preferences, consultation bookings, the Product Waitlist, Product Accounts, Trusted Devices, Product Sync, Mailbox Connections, and related Product operations; official Czech company identifiers remain untranslated.
 _Avoid_: Privacy policy, cookie policy, terms and conditions
+
+**Terms of Use**:
+The English-language agreement governing use of current and future Unwired Products, with product-specific supplemental terms taking precedence where they conflict. It does not govern Frontend Consultancy engagements or replace the Privacy Notice.
+_Avoid_: Terms of Service, website terms, consultancy agreement, privacy policy
 
 **Website Privacy Baseline**:
 The Company Website uses only visitor-requested theme storage and processing needed for hosting, security, and the Product Waitlist. It does not use analytics, advertising trackers, third-party embeds, fingerprinting, or other nonessential browser storage.
@@ -47,6 +51,34 @@ _Avoid_: Consultancy-only site, product-only site, docs site
 **Products**:
 The Unwired-owned software apps promoted on the company website, presented as separate apps under one product philosophy rather than as a suite.
 _Avoid_: Suite, platform, side projects, demos, experiments
+
+**Product Account**:
+The Unwired-owned account that identifies a person and their Trusted Devices across Products. It is separate from the person's Apple ID and Mail Provider accounts.
+_Avoid_: Apple account, mailbox account, website account
+
+**Operational Account Data**:
+Backend-readable Product Account metadata needed for identity, Trusted Device routing, security, and delivery of encrypted Product operations. It does not include Mail Provider credentials or readable Product Sync content.
+_Avoid_: Synced mail, readable Product content, Mail Provider data
+
+**Trusted Device**:
+A device authorized to access a Product Account and participate in Product Sync. Each Trusted Device authorizes its Mailbox Connections independently.
+_Avoid_: Synced browser, remote session, universally authorized device
+
+**Mail Provider**:
+An external service or server that hosts a person's mailbox, such as Google, Microsoft, an organization's Exchange server, or a standards-based IMAP and SMTP service.
+_Avoid_: Unwired backend, Product Account, Mailbox Connection
+
+**Mailbox Connection**:
+An authorized connection from a Trusted Device to a Mail Provider account. Provider credentials and access tokens remain on that device.
+_Avoid_: Product Account, Unwired-hosted mailbox, shared cloud credential
+
+**Product Sync**:
+End-to-end encrypted synchronization of Product-owned settings and state between Trusted Devices. Unwired's backend stores opaque ciphertext and cannot recover it without a Recovery Key held by the person or their devices.
+_Avoid_: Mail Provider sync, cloud-readable backup, account recovery service
+
+**Recovery Key**:
+A secret held by a person or their Trusted Devices that can recover end-to-end encrypted Product Sync data. Unwired does not hold it and cannot replace it.
+_Avoid_: Product Account password, Apple credential, support reset code
 
 **Product Philosophy**:
 Unwired products use on-device AI for personal communication and time.
