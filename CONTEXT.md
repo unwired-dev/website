@@ -17,7 +17,7 @@ The Legal Entity's registered name, registered office, IČO, DIČ, and Commercia
 _Avoid_: Imprint page, legal notice page, brand-only copyright
 
 **Privacy Notice**:
-The English-language Company Website disclosure explaining how the Legal Entity processes Company Website and Product data. It covers website use, theme preferences, consultation bookings, the Product Waitlist, Product Accounts, Trusted Devices, Product Sync, Mailbox Connections, and related Product operations; official Czech company identifiers remain untranslated.
+The English-language disclosure explaining how the Legal Entity processes current Company Website data. It covers website use, theme preferences, consultation bookings, and the Product Waitlist. Product processing is added only after the relevant Product implementation, data map, providers, legal bases, transfers, retention controls, and public wording are confirmed. Official Czech company identifiers remain untranslated.
 _Avoid_: Privacy policy, cookie policy, terms and conditions
 
 **Terms of Use**:

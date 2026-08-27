@@ -70,6 +70,7 @@ direct, free way to withdraw consent through `silhan@unwired.dev`.
 - `/api/trpc` tRPC backend API
 - `/products/waitlist` shared Product Waitlist
 - `/privacy` Privacy Notice
+- `/terms` Terms of Use
 - `/unwired-mail` product proof page
 - `/unwired-calendar` product proof page
 - `/writing` repo-owned writing index, intentionally omitted from navigation

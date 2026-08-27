@@ -28,7 +28,7 @@ test('footer exposes the legal entity and legal documents', async ({
   ).toHaveAttribute('href', '/terms');
 });
 
-test('Privacy Notice identifies website and Product processing', async ({
+test('Privacy Notice identifies current website processing', async ({
   page,
 }) => {
   const response = await page.goto('/privacy');
@@ -37,7 +37,7 @@ test('Privacy Notice identifies website and Product processing', async ({
   await expect(
     page.getByRole('heading', { level: 1, name: 'Privacy Notice' }),
   ).toBeVisible();
-  await expect(page.getByText('Draft for legal review')).toBeVisible();
+  await expect(page.getByText('Draft for legal review')).toHaveCount(0);
   await expect(
     page.getByRole('heading', { name: 'Product waitlist' }),
   ).toBeVisible();
@@ -49,29 +49,14 @@ test('Privacy Notice identifies website and Product processing', async ({
   ).toBeVisible();
   await expect(
     page.getByRole('heading', { name: 'Product Accounts and sign-in' }),
-  ).toBeVisible();
+  ).toHaveCount(0);
+  await expect(page.getByText('Provisional · 27 August 2026')).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: 'Trusted Devices and Product Sync' }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole('heading', { name: 'Mailbox Connections' }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole('heading', { name: 'Push notifications' }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole('heading', { name: 'On-device AI assistance' }),
-  ).toBeVisible();
-  await expect(
-    page.getByText('Provisional draft · 24 August 2026'),
-  ).toBeVisible();
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-    'content',
-    /noindex/u,
-  );
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
 });
 
-test('Terms of Use publishes the provisional product agreement', async ({
+test('Terms of Use publishes the prospective product agreement', async ({
   page,
 }) => {
   const response = await page.goto('/terms');
@@ -80,7 +65,7 @@ test('Terms of Use publishes the provisional product agreement', async ({
   await expect(
     page.getByRole('heading', { level: 1, name: 'Terms of Use' }),
   ).toBeVisible();
-  await expect(page.getByText('Draft for legal review')).toBeVisible();
+  await expect(page.getByText('Draft for legal review')).toHaveCount(0);
   await expect(
     page.getByRole('heading', { name: 'Product licence' }),
   ).toBeVisible();
@@ -93,8 +78,8 @@ test('Terms of Use publishes the provisional product agreement', async ({
   await expect(
     page.getByRole('heading', { name: 'Governing law and disputes' }),
   ).toBeVisible();
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-    'content',
-    /noindex/u,
-  );
+  await expect(page.getByText('Prospective · 27 August 2026')).toBeVisible();
+  await expect(
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
 });
