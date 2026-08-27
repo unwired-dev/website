@@ -5,23 +5,19 @@ import { cn } from '@unwired/ui/lib/utils';
 import Link from 'next/link';
 
 import {
-  eyebrow,
-  pageGrid,
-  reveal,
-  sectionHeading,
-} from '@/components/marketing-styles';
+  LegalDocumentHeader,
+  legalDocumentLink,
+} from '@/components/legal-document-header';
+import { pageGrid } from '@/components/marketing-styles';
 import { privacyContactEmail } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
-  description: 'Terms governing current and future Unwired products.',
+  description: 'Prospective terms for current and future Unwired products.',
   alternates: {
     canonical: '/terms',
   },
 };
-
-const legalLink =
-  'text-foreground underline decoration-[var(--signal)] decoration-1 underline-offset-[0.24em] transition-colors duration-[160ms] ease-[var(--ease-out-quart)] hover:text-[var(--signal)]';
 
 const termsSections = [
   { href: '#scope', label: 'Scope and acceptance' },
@@ -68,53 +64,15 @@ export default function TermsPage() {
     <main
       className="flex-1"
       id="main-content">
-      <section
-        className={cn(pageGrid, reveal, 'gap-y-16 py-[clamp(4rem,10vw,9rem)]')}>
-        <div className="col-span-full flex flex-col gap-6 md:col-start-1 md:col-end-9">
-          <p className={eyebrow}>
-            <span>06</span>
-            Legal
-          </p>
-          <h1 className={cn(sectionHeading, 'max-w-[11ch]')}>Terms of Use</h1>
-          <div className="grid max-w-[46rem] gap-3">
-            <p className="font-heading text-[clamp(1.5rem,3vw,2.4rem)] leading-[1.05] font-[540] tracking-[-0.04em]">
-              The agreement for using Unwired products.
-            </p>
-            <p className="text-muted-foreground text-[1.15rem] leading-[1.7]">
-              These shared terms cover current and future Unwired products.
-              Product-specific terms may add to or replace a provision where
-              they say so expressly.
-            </p>
-          </div>
-        </div>
-
-        <dl className="border-border md:[&>div+div]:border-border col-span-full grid border-y md:col-start-1 md:col-end-13 md:grid-cols-3 [&>div]:grid [&>div]:gap-2 [&>div]:py-5 md:[&>div]:px-6 md:[&>div+div]:border-l md:[&>div:first-child]:pl-0">
-          <div>
-            <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
-              Provider
-            </dt>
-            <dd className="font-[650]">Unwired, s.r.o.</dd>
-          </div>
-          <div>
-            <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
-              Contact
-            </dt>
-            <dd>
-              <a
-                className={legalLink}
-                href={`mailto:${privacyContactEmail}`}>
-                {privacyContactEmail}
-              </a>
-            </dd>
-          </div>
-          <div>
-            <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
-              Status
-            </dt>
-            <dd>Effective · 27 August 2026</dd>
-          </div>
-        </dl>
-      </section>
+      <LegalDocumentHeader
+        contactLabel="Contact"
+        documentNumber="06"
+        entityLabel="Provider"
+        lead="The prospective agreement for using Unwired products."
+        status="Prospective · 27 August 2026"
+        summary="These shared terms are intended to cover current and future Unwired products. Product-specific terms may add to or replace a provision where they say so expressly."
+        title="Terms of Use"
+      />
 
       <div
         className={cn(
@@ -163,10 +121,11 @@ export default function TermsPage() {
             index="01"
             title="Scope and acceptance">
             <p>
-              These Terms govern your use of Unwired Mail, Unwired Calendar, and
-              other software products that Unwired identifies as covered by
-              them. They do not govern Frontend Consultancy, which is subject to
-              the agreement for each client engagement.
+              If you accept these Terms in a Product flow, they govern your use
+              of Unwired Mail, Unwired Calendar, and other software products
+              that Unwired identifies as covered by them. They do not govern
+              Frontend Consultancy, which is subject to the agreement for each
+              client engagement.
             </p>
             <p>
               Product-specific supplemental terms take precedence over these
@@ -380,7 +339,7 @@ export default function TermsPage() {
             <p>
               Contact Unwired first at{' '}
               <a
-                className={legalLink}
+                className={legalDocumentLink}
                 href={`mailto:${privacyContactEmail}`}>
                 {privacyContactEmail}
               </a>{' '}
@@ -391,13 +350,13 @@ export default function TermsPage() {
               obchodní inspekce, Ústřední inspektorát – oddělení ADR, Gorazdova
               1969/24, 120 00 Praha 2, Czech Republic, at{' '}
               <a
-                className={legalLink}
+                className={legalDocumentLink}
                 href="mailto:adr@coi.gov.cz">
                 adr@coi.gov.cz
               </a>{' '}
               or through the{' '}
               <a
-                className={legalLink}
+                className={legalDocumentLink}
                 href="https://coi.gov.cz/informace-o-adr/"
                 rel="noreferrer"
                 target="_blank">
@@ -412,19 +371,20 @@ export default function TermsPage() {
               Changes to these Terms
             </h2>
             <p className="text-muted-foreground mt-4 max-w-[48rem] leading-[1.75]">
-              Unwired will update this page and its effective date for material
-              changes and provide any notice required by applicable law. A
-              material change will not apply retroactively where the law
-              prohibits it.
+              Unwired may revise this prospective text before it is first
+              presented for acceptance. After an agreement forms, Unwired will
+              update this page for material changes and provide any notice
+              required by applicable law. A material change will not apply
+              retroactively where the law prohibits it.
             </p>
             <p className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
               <Link
-                className={legalLink}
+                className={legalDocumentLink}
                 href="/privacy">
                 Read the Privacy Notice
               </Link>
               <Link
-                className={legalLink}
+                className={legalDocumentLink}
                 href="/">
                 Return to Unwired
               </Link>

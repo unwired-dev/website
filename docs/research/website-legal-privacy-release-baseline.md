@@ -6,11 +6,11 @@ This note is a release baseline for the current Unwired company website. It is n
 
 ## Release conclusion
 
-The current Privacy Notice should become effective only after it is narrowed to the website practices that actually exist and the unresolved provider, retention, and transfer facts below are confirmed. The repository does not implement Product Accounts, Product Sync, Mailbox Connections, push notifications, Convex, or Apple sign-in; those subjects should not be described as current processing in an effective notice.
+The public Privacy Notice should cover only the website practices that actually exist and remain provisional until the unresolved provider, retention, and transfer facts below are confirmed. The repository does not implement Product Accounts, Product Sync, Mailbox Connections, push notifications, Convex, or Apple sign-in; those subjects should remain outside the public notice until the relevant processing and controls exist.
 
 The current Terms of Use are Product terms, not Company Website terms. Publishing and indexing them does not form a contract: the page itself says acceptance occurs only in a later Product flow. They can be publicly available as prospective terms, but they should not be represented as governing a released Product until the relevant Product, distribution path, and affirmative acceptance flow exist. The broader consumer-law baseline already lives in `docs/research/product-legal-baseline.md`.
 
-Removing `noindex` is not a legal requirement. GDPR instead requires privacy information to be concise, transparent, intelligible, and easily accessible. Removing `noindex` is reasonable once the pages are accurate, effective versions; keep permanent footer links and the just-in-time Privacy Notice link beside the waitlist and consultation actions. See [GDPR Article 12](https://eur-lex.europa.eu/eli/reg/2016/679/oj).
+Removing `noindex` is not a legal requirement. GDPR instead requires privacy information to be concise, transparent, intelligible, and easily accessible. A provisional document can be public and indexable when its status is clear, but indexing does not make the Privacy Notice effective or form an agreement under the Terms. Keep permanent footer links and the just-in-time Privacy Notice link beside the waitlist and consultation actions. See [GDPR Article 12](https://eur-lex.europa.eu/eli/reg/2016/679/oj).
 
 ## Facts established by this repository
 
@@ -126,7 +126,7 @@ Resolve these before presenting the pages as legally reviewed, effective, and co
 1. **Legal review owner:** name the qualified Czech/EU reviewer or remove any implication that legal review has occurred.
 2. **Effective dates and version record:** choose the actual publication date and preserve the approved text/version. Do not claim retroactive effect.
 3. **Official entity verification:** verify company name, registered office, IČO, DIČ, and register file on publication day.
-4. **Current-only privacy scope:** remove proposed Product processing from the effective website notice or keep it in a clearly separate, non-effective planning document.
+4. **Product privacy scope:** keep proposed Product processing outside the public notice until the implementation, data map, providers, legal bases, transfers, retention controls, and wording are confirmed.
 5. **Provider facts:** resolve every confirmation item in the table above, especially Vercel plan/DPA, Resend retention, Google Workspace CDPA/retention, and the Cal.eu shutdown decision.
 6. **Waitlist operations:** implement auditable consent evidence, withdrawals/suppression, and provider-aware deletion; decide whether to add double opt-in.
 7. **Retention:** replace “provider-configured” or aspirational periods with actual periods or meaningful criteria tied to each system.
