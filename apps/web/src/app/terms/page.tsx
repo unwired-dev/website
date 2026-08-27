@@ -14,14 +14,9 @@ import { privacyContactEmail } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
-  description:
-    'Provisional terms governing current and future Unwired products.',
+  description: 'Terms governing current and future Unwired products.',
   alternates: {
     canonical: '/terms',
-  },
-  robots: {
-    follow: false,
-    index: false,
   },
 };
 
@@ -93,22 +88,6 @@ export default function TermsPage() {
           </div>
         </div>
 
-        <div className="col-span-full md:col-start-1 md:col-end-10">
-          <div
-            className="grid gap-3 border-l-2 border-[var(--signal)] bg-[color-mix(in_oklch,var(--signal),transparent_92%)] px-5 py-4"
-            role="note">
-            <p className="font-[650] text-[var(--signal)]">
-              Draft for legal review
-            </p>
-            <p className="text-muted-foreground leading-[1.65]">
-              These Terms are provisional and are not in effect. They must not
-              be used as the basis for a product release or account-acceptance
-              flow until Unwired completes legal review and publishes an
-              effective date.
-            </p>
-          </div>
-        </div>
-
         <dl className="border-border md:[&>div+div]:border-border col-span-full grid border-y md:col-start-1 md:col-end-13 md:grid-cols-3 [&>div]:grid [&>div]:gap-2 [&>div]:py-5 md:[&>div]:px-6 md:[&>div+div]:border-l md:[&>div:first-child]:pl-0">
           <div>
             <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
@@ -132,7 +111,7 @@ export default function TermsPage() {
             <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
               Status
             </dt>
-            <dd>Provisional draft · 24 August 2026</dd>
+            <dd>Effective · 27 August 2026</dd>
           </div>
         </dl>
       </section>
@@ -184,11 +163,10 @@ export default function TermsPage() {
             index="01"
             title="Scope and acceptance">
             <p>
-              Once approved and effective, these Terms will govern your use of
-              Unwired Mail, Unwired Calendar, and other software products that
-              Unwired identifies as covered by them. They do not govern Frontend
-              Consultancy, which is subject to the agreement for each client
-              engagement.
+              These Terms govern your use of Unwired Mail, Unwired Calendar, and
+              other software products that Unwired identifies as covered by
+              them. They do not govern Frontend Consultancy, which is subject to
+              the agreement for each client engagement.
             </p>
             <p>
               Product-specific supplemental terms take precedence over these
@@ -196,9 +174,9 @@ export default function TermsPage() {
               applicable platform terms also take precedence.
             </p>
             <p>
-              Unwired will present the effective Terms for explicit acceptance
-              during Product Account creation or another appropriate product
-              flow. Merely viewing this page does not create an agreement.
+              An agreement under these Terms is formed only when you accept them
+              during Product Account creation or another Product flow. Merely
+              viewing this page does not create an agreement.
             </p>
           </TermsSection>
 
@@ -434,10 +412,10 @@ export default function TermsPage() {
               Changes to these Terms
             </h2>
             <p className="text-muted-foreground mt-4 max-w-[48rem] leading-[1.75]">
-              When these Terms become effective, Unwired will update this page
-              and its effective date for material changes and provide any notice
-              required by applicable law. A material change will not apply
-              retroactively where the law prohibits it.
+              Unwired will update this page and its effective date for material
+              changes and provide any notice required by applicable law. A
+              material change will not apply retroactively where the law
+              prohibits it.
             </p>
             <p className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
               <Link

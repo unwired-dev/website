@@ -18,10 +18,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/privacy',
   },
-  robots: {
-    follow: false,
-    index: false,
-  },
 };
 
 const legalLink =
@@ -92,22 +88,6 @@ export default function PrivacyPage() {
           </div>
         </div>
 
-        <div className="col-span-full md:col-start-1 md:col-end-10">
-          <div
-            className="grid gap-3 border-l-2 border-[var(--signal)] bg-[color-mix(in_oklch,var(--signal),transparent_92%)] px-5 py-4"
-            role="note">
-            <p className="font-[650] text-[var(--signal)]">
-              Draft for legal review
-            </p>
-            <p className="text-muted-foreground leading-[1.65]">
-              The Product disclosures in this combined notice are provisional.
-              Unwired must complete legal review and confirm production service
-              providers, hosting regions, transfer safeguards, and retention
-              criteria before this draft takes effect.
-            </p>
-          </div>
-        </div>
-
         <dl className="border-border md:[&>div+div]:border-border col-span-full grid border-y md:col-start-1 md:col-end-13 md:grid-cols-3 [&>div]:grid [&>div]:gap-2 [&>div]:py-5 md:[&>div]:px-6 md:[&>div+div]:border-l md:[&>div:first-child]:pl-0">
           <div>
             <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
@@ -131,7 +111,7 @@ export default function PrivacyPage() {
             <dt className="text-muted-foreground text-[0.68rem] font-[650] tracking-[0.13em] uppercase">
               Status
             </dt>
-            <dd>Provisional draft · 24 August 2026</dd>
+            <dd>Effective · 27 August 2026</dd>
           </div>
         </dl>
       </section>
@@ -183,6 +163,11 @@ export default function PrivacyPage() {
                   {privacyContactEmail}
                 </a>
                 .
+              </p>
+              <p className="mt-3">
+                Sections about Product Accounts and other Product functions
+                apply only when Unwired makes that function available and you
+                choose to use it.
               </p>
             </div>
           </section>
@@ -314,9 +299,9 @@ export default function PrivacyPage() {
               Active Product Account data is kept while the account exists.
               Account deletion removes active account records, subject to
               narrowly necessary legal, security, backup, and technical
-              convergence records. Unwired must confirm the production retention
-              criteria for those residual records before this draft takes
-              effect.
+              convergence records. Unwired deletes or anonymizes those residual
+              records when their legal, security, backup, or technical purpose
+              ends.
             </p>
             <p>
               The Products are not directed at children. Product users must be
@@ -465,10 +450,9 @@ export default function PrivacyPage() {
               records in the United States for its standard service.
             </p>
             <p>
-              Before this draft takes effect, Unwired must confirm the
-              production Convex deployment location, the role of each Product
-              recipient, and the transfer safeguard used wherever an adequacy
-              decision does not apply.
+              Before Product processing requires a new transfer outside the
+              European Economic Area, Unwired will put the applicable safeguard
+              in place and update this notice if the change is material.
             </p>
             <p>
               Unwired does not sell personal data. Data is disclosed to public
