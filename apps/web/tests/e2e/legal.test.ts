@@ -1,5 +1,41 @@
 import { expect, test } from '@playwright/test';
 
+test('Mail privacy is public and separate from the Company Website notice', async ({
+  page,
+}) => {
+  await page.goto('/unwired-mail');
+  await page
+    .getByRole('link', { name: 'Unwired Mail Privacy Notice', exact: true })
+    .click();
+
+  await expect(page).toHaveURL(/\/unwired-mail\/privacy$/u);
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Mail Privacy Notice' }),
+  ).toBeVisible();
+  await expect(page.getByRole('main')).toHaveCount(1);
+  await expect(
+    page.getByRole('link', { name: 'Google API Services User Data Policy' }),
+  ).toHaveAttribute(
+    'href',
+    'https://developers.google.com/terms/api-services-user-data-policy',
+  );
+  await expect(
+    page.getByRole('link', { name: 'Google Account third-party connections' }),
+  ).toHaveAttribute('href', 'https://myaccount.google.com/connections');
+  await page
+    .getByRole('link', { name: 'Company Website Privacy Notice', exact: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL(/\/privacy$/u);
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: 'Privacy Notice',
+      exact: true,
+    }),
+  ).toBeVisible();
+});
+
 test('footer exposes the legal entity and legal documents', async ({
   page,
 }) => {
