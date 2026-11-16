@@ -1,0 +1,113 @@
+import { LegalDocumentHeader } from '@/components/legal-document-header';
+import { pageGrid } from '@/components/marketing-styles';
+import { cn } from '@unwired/ui/lib/utils';
+
+export const metadata = {
+  title: 'Unwired Mail Privacy Notice',
+  description:
+    'How Unwired Mail uses account, email, encrypted sync and diagnostic data.',
+  alternates: { canonical: '/unwired-mail/privacy' },
+};
+
+<main id="main-content" className="flex-1">
+<LegalDocumentHeader
+  contactLabel="Privacy contact"
+  documentNumber="06"
+  entityLabel="Controller"
+  lead="Your mail, your devices, your choices."
+  status="Updated · 16 November 2026"
+  summary="How Unwired Mail handles your information, including Google account and Gmail data."
+  title="Mail Privacy Notice"
+/>
+<article className={cn(pageGrid, 'border-t border-border py-[clamp(4rem,9vw,8rem)]')}>
+<div className="text-muted-foreground col-span-full grid max-w-[48rem] gap-5 leading-[1.75] md:col-start-3 md:col-end-11 [&_h2]:font-heading [&_h2]:text-foreground [&_h2]:mt-8 [&_h2]:text-3xl [&_h2]:font-[580] [&_h2]:tracking-[-0.035em] [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mt-2">
+
+This notice covers the Unwired Mail app for iPhone, iPad and Mac, including its TestFlight preview. The separate [Company Website Privacy Notice](/privacy) covers visits to this site and the product waitlist. Reading this notice does not give consent to optional processing or authorize access to a mailbox.
+
+## Who is responsible
+
+Unwired, s.r.o. is the controller: Soběšická 184/36, Husovice, 614 00 Brno, Czech Republic; IČO 19711131, DIČ CZ19711131; registered at the Regional Court in Brno, section C, file 135646.
+
+For privacy questions, requests or concerns, contact [silhan@unwired.dev](mailto:silhan@unwired.dev). Do not send passwords, access tokens or your Recovery Key.
+
+## Account and mailbox information
+
+Your Unwired Product Account is separate from your email accounts. Google or Apple sign-in verifies who you are. Our backend stores the sign-in provider and its account identifier, device identifiers, platform and device authorization state to operate and secure your account. Google sign-in can provide your name, email address and profile picture to the device. We do not store your name or readable email address in the Product Account record.
+
+You choose which mailboxes to connect and authorize each device separately. Provider credentials, including Gmail access and refresh tokens, stay in protected storage on that device. The device communicates directly with the mail provider to read, organize and send mail. Our backend temporarily verifies Google identity tokens for sign-in and notification routing; it does not retain Gmail mailbox access or refresh tokens.
+
+Without sign-in we cannot provide account-based services. Without mailbox authorization we cannot access that mailbox. Declining an optional permission does not authorize a different use of your data.
+
+## Google account and Gmail access
+
+When you connect Gmail, Unwired Mail requests basic Google identity information and the `gmail.modify` permission. This lets the app read messages, attachments, labels and change history; search; organize mail, including archive, read state, labels and Trash; and compose, reply, forward and send mail. It also lets the device request Gmail change notifications. The app does not request the broader `mail.google.com` permission for permanent deletion.
+
+We use Google data only to provide the mail and account features you choose. We do not sell it, use it for advertising, or use it to develop, improve or train generalized AI or machine-learning models. Unwired Mail follows the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including its Limited Use requirements, when using or transferring Google API data.
+
+Google's Sign-In SDK also processes information under [Google's Privacy Policy](https://policies.google.com/privacy). Its privacy declarations include account/profile, device, usage and security-related information, including coarse location. Those declarations do not mean Unwired requests phone-number or location permission, or stores those details in a readable account profile.
+
+You can revoke access in [Google Account third-party connections](https://myaccount.google.com/connections). Revocation stops future authorized Gmail access but does not by itself delete your Unwired account or already synchronized encrypted data. To remove those, use the controls below.
+
+## On-device processing and encrypted sync
+
+Messages are cached encrypted on your device. Search, categorization, summaries, translation and writing assistance run on the device. The app does not send Gmail content to an external AI model service. Planned cloud assistance and product analytics are not enabled processing described by this notice.
+
+Private Sync stores end-to-end encrypted mailbox descriptions, preferences, Drafts and Draft attachments with our hosting provider, Convex, so your Trusted Devices can use them. This can include addresses, recipients, subjects, text, quoted mail, files and photos. The backend does not hold the keys needed to read that content. Encryption does not make your account or operational records anonymous.
+
+You and your devices hold the Recovery Key. Unwired cannot recover lost keys or decrypt your synchronized content for you.
+
+Contacts permission is optional. The app reads contacts on the device to suggest recipients and does not upload your address book. A contact you choose as a recipient becomes part of the Draft and of the message you send.
+
+## Notifications and sending
+
+Google Cloud Pub/Sub delivers a Gmail mailbox address and change marker to our notification relay. The relay uses a keyed digest of the address to match the mailbox to your devices; it does not retain the readable address. It stores routing and ownership-verification information, including change markers. Apple Push Notification service delivers wakes using a device token and opaque route information. Message content is fetched and evaluated on your device; any notification preview is created there.
+
+Undelivered Pub/Sub messages can remain queued for up to seven days. The production subscription does not retain acknowledged messages. These provider queues are separate from the relay's active routing records.
+
+For sending and scheduled sending, the backend stores opaque Draft identifiers, timing and delivery-claim state to coordinate devices and avoid duplicate sends. The originating device submits the message to your mail provider. Recipients and their providers receive the mail and attachments you choose to send.
+
+## Optional diagnostics and support
+
+Error reporting is off by default. If you enable it, the app sends bounded diagnostic reports through Convex to PostHog's EU service. These contain an installation identifier, app/build/OS information, predefined error and operation codes, timings, status and bounded stack information. Reports exclude mail content, subjects, mailbox addresses, credentials and encryption keys. The installation identifier is separate from your Product Account but can link reports from the same installation.
+
+You can turn reporting off and request deletion using the app's error-report controls. Unsent reports expire locally after 24 hours. PostHog's current free-plan event retention is one year; that is a retention window, not a promise that every copy is erased at that exact time.
+
+If you contact us, we process your contact details and what you choose to send to answer the request and keep an appropriate record. Support email is handled through Google Workspace. Send only the information needed; support cannot recover your encryption keys or open encrypted synchronized mail.
+
+## Purposes and legal bases
+
+We process account, mailbox, synchronization and delivery information to provide the app services you request and perform our agreement with you. We rely on legitimate interests to secure the service, prevent abuse and duplicate delivery, handle support and defend legal claims. Where a law requires particular records, we retain them to meet that obligation.
+
+Optional error reporting relies on your consent. You can withdraw it without affecting earlier lawful processing or your ability to use the core mail features. Authorizing a provider's OAuth permission is a separate control over mailbox access; it is not blanket consent to every kind of processing.
+
+Unwired Mail is intended for people aged 13 and older, subject to local requirements. Where parental authorization is required, it must be obtained. Optional consent-based processing must not be enabled by someone who cannot validly authorize it. Contact us if you believe a child's information has been provided without the required authorization.
+
+## Service providers and international processing
+
+Convex hosts the operational account records and encrypted synchronization data; the current production deployment is in Ireland. Google provides sign-in, Gmail, Pub/Sub and support email. Apple provides platform sign-in, keychain services and push delivery. PostHog EU handles opted-in diagnostics. A mail provider you connect also processes the requests you send to it under its own terms and privacy notice. Vercel hosts this public privacy page under the separate Company Website notice.
+
+Providers can process technical, security and service information in other countries, including outside the European Economic Area. Their service terms and privacy notices describe their international processing and transfer safeguards. You can contact us for information about the recipients and safeguards applicable to your use of Unwired Mail. We do not sell personal data or share Google data for advertising. We disclose information to public authorities only when legally required.
+
+## Retention, removal and deletion
+
+Device data remains while the relevant account or mailbox is kept on that device, subject to cache limits. Signing out or removing device authorization clears the corresponding local credentials and cached content through the app's cleanup process. An offline or unreachable device cannot be remotely guaranteed to erase immediately.
+
+Removing a Mailbox Connection everywhere removes its synchronized connection and routing information. It does not delete mail held by the provider. Deleting your Product Account removes its active account, device and encrypted-sync records through the deletion process. Provider revocation or deletion steps that fail can be retried; the minimum information needed to finish them can remain until that process completes.
+
+Account deletion retains a minimal sign-in identity marker to prevent reuse of a deleted account; that marker currently has no automatic expiry. Operational delivery and routing records are retained for their account, device and delivery purposes and removed as those relationships and operations are retired. We keep support, security or legal records only for the applicable purpose or legal obligation. Hosting security logs and any backup copies follow the providers' retention and deletion cycles, so deletion from active storage does not promise immediate erasure from every infrastructure copy.
+
+You can revoke Google access independently, remove a device's authorization, remove a mailbox everywhere, delete error reports, or delete your Product Account. These are different actions. Deleting an Unwired account does not delete your Google Account or the mail in your provider's mailbox.
+
+## Your rights and choices
+
+Depending on the law that applies, you may request access, correction, deletion, restriction or portability of your personal data; object to processing based on legitimate interests; and withdraw optional consent. Contact [silhan@unwired.dev](mailto:silhan@unwired.dev). We may need information to verify the request, but never your password or Recovery Key. Rights apply to information we hold; we cannot disclose readable content for which we do not hold decryption keys.
+
+You may complain to the [Czech Office for Personal Data Protection](https://uoou.gov.cz/) or your local supervisory authority. The app's on-device suggestions do not make decisions about you with legal or similarly significant effects.
+
+We will update this notice when processing changes and explain material changes through appropriate app or public notices. New optional processing needs its own applicable choice; this notice does not activate it.
+
+[Return to Unwired Mail](/unwired-mail) · [Company Website Privacy Notice](/privacy)
+
+</div>
+</article>
+</main>

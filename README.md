@@ -72,6 +72,7 @@ direct, free way to withdraw consent through `silhan@unwired.dev`.
 - `/privacy` Privacy Notice
 - `/terms` Terms of Use
 - `/unwired-mail` product proof page
+- `/unwired-mail/privacy` app-specific privacy notice, separate from the Company Website notice
 - `/unwired-calendar` product proof page
 - `/writing` repo-owned writing index, intentionally omitted from navigation
 - `/writing/[slug]` statically generated MDX writing entries
